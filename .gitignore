@@ -1,0 +1,9 @@
+
+studio/node_modules
+studio/.env.development
+studio/.env.production
+studio/transfers
+
+web/node_modules
+web/.env
+web/.env.local
