@@ -7,13 +7,7 @@ export default {
   name: "dog",
   title: "Dog",
   icon: () => <FaPaw color="blue" />,
-  orderings: [
-    {
-      name: "displayAsc",
-      title: "Display Order",
-      by: [{ field: "list_order", direction: "asc" }],
-    },
-  ],
+
   preview: {
     select: {
       show_name: "show_name",
@@ -22,7 +16,6 @@ export default {
       kennel: "breeder.kennel_name",
       media: "head_shots.0",
       sex: "sex",
-      list_order: "list_order",
     },
 
     prepare(selection) {
@@ -34,11 +27,10 @@ export default {
         birthday,
         show_name,
         name,
-        list_order,
       } = selection;
       return {
         title: `${name} - ${show_name}`,
-        subtitle: `${sex} / order: ${list_order}`,
+        subtitle: `${sex}`,
         media,
       };
     },
@@ -68,12 +60,7 @@ export default {
       title: "Show Name",
       type: "string",
     },
-    {
-      name: "list_order",
-      type: "number",
-      description:
-        "1 is listed first, then 2 etc.   1.5 would be between them. ",
-    },
+
     {
       name: "birthday",
       type: "date",

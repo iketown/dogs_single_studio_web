@@ -14,6 +14,11 @@ const sectionTypesNoSavedVersions = [
     type: "map_section",
     title: "Map Section",
   },
+  {
+    name: "dog_list_item",
+    type: "dog_list_item",
+    title: "Dog List Item",
+  },
 ];
 
 const sectionTypes = [

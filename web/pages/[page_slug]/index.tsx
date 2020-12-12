@@ -3,11 +3,16 @@ import Layout from "@components/layout/Layout";
 import { useSections } from "@sections/useSections";
 import JTree from "@util/JTree";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import React from "react";
 import { useRef } from "react";
+import { Helmet } from "react-helmet";
 import { getPageData } from "sanityQueries/pageQuery";
 
+//
+//
 const PageIndex = (props) => {
+  const { query } = useRouter();
   const { sections_custom_page, sections_default_page, layout_info } = props;
   const { displaySections } = useSections();
   // this component works for custom pages OR default pages, so we have to check which type this is:  either sections_custom_page or sections_default_page;  the other should be undefined;
@@ -24,7 +29,17 @@ const PageIndex = (props) => {
     (section, index) => (!!section?._id ? section : page.custom_sections[index])
   );
 
-  return <Layout {...{ layout_info }}>{displaySections(sections)}</Layout>;
+  return (
+    <Layout {...{ layout_info }}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>
+          {layout_info.kennel_name} | {query.page_slug}
+        </title>
+      </Helmet>
+      {displaySections(sections)}
+    </Layout>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {

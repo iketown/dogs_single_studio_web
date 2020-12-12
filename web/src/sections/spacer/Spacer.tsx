@@ -4,7 +4,7 @@ const Spacer: React.FC<SectionPickerI> = ({ section }) => {
   return (
     <div
       style={{
-        height: `${section.height || 1}rem`,
+        height: `${section.height || 0}rem`,
       }}
     ></div>
   );

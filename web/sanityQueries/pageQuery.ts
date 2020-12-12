@@ -11,6 +11,7 @@ export const sectionInfo = groq`
      "photo": photo {..., asset->},
      "ext_photos": photos[],
      "badges_refs": badges[]->,
+     "dog": dog_ref->,
   }
 `;
 const pageInfo = groq`

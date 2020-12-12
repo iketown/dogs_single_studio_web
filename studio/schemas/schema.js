@@ -13,6 +13,7 @@ import center_logo from "./sections/center_logo";
 import centered_title from "./sections/centered_title";
 import dog from "./dog";
 import dog_external from "./dog_external";
+import dog_list_item from "./sections/dog_list_item";
 import dynamic_message from "./dynamicMessage";
 import external_photo, {
   external_photo_array,
@@ -57,6 +58,7 @@ export default createSchema({
     centered_title,
     dog_external,
     dog,
+    dog_list_item,
     dynamic_message,
     external_photo_array,
     external_photo,
