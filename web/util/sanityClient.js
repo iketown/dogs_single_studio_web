@@ -1,9 +1,7 @@
 import sanityClient from "@sanity/client";
 
-import sanityInfo from "../../studio/sanity.json";
-
 export default sanityClient({
-  projectId: sanityInfo.api.projectId,
-  dataset: sanityInfo.api.dataset,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   useCdn: false,
 });
