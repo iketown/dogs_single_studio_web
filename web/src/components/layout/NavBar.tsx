@@ -40,7 +40,7 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
   layout_info,
 }) => {
   const { contact, kennel_name, links, isLive } = layout_info;
-  const { query, route } = useRouter();
+  const { query, route, push } = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const allLinks = links?.default
     .map((link, i) => (link.slug ? link : links.custom[i]))
@@ -68,41 +68,43 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
                 key={slug}
                 active={query.page_slug === slug}
                 className="ml-auto"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => push("/[page_slug]", `/${slug}`)}
               >
-                <Link as={`/${slug}`} href={`/[page_slug]`} key={slug}>
-                  <div className="buttonText">{button_text.toUpperCase()}</div>
-                </Link>
+                <div className="buttonText">{button_text.toUpperCase()}</div>
               </Nav.Link>
             );
           })}
-          <Nav.Link className="ml-auto" active={route.includes("puppies")}>
-            <Link href={`/puppies`} as={`/puppies`}>
-              <div className="buttonText">PUPPIES</div>
-            </Link>
+          <Nav.Link
+            className="ml-auto"
+            active={route.includes("puppies")}
+            onClick={() => push("/puppies")}
+          >
+            <div className="buttonText">PUPPIES</div>
           </Nav.Link>
-          <Nav.Link className="ml-auto" active={route.includes("sires")}>
-            <Link href={`/sires`} as={`/sires`}>
-              <div className="buttonText">SIRES</div>
-            </Link>
+          {/* <Nav.Link
+            className="ml-auto"
+            active={route.includes("sires")}
+            onClick={() => push("/sires")}
+          >
+            <div className="buttonText">SIRES</div>
           </Nav.Link>
-          <Nav.Link active={route.includes("dams")} className="ml-auto">
-            <Link href={`/dams`} as={`/dams`}>
-              <div className="buttonText">DAMS</div>
-            </Link>
-          </Nav.Link>
-          <Nav.Link className="ml-auto">
-            <Link href={`/apply`}>
-              <Button
-                style={{
-                  margin: "-3px 0 -3px 5px",
-                }}
-                variant="outline-info"
-                size="sm"
-              >
-                APPLY
-              </Button>
-            </Link>
+          <Nav.Link
+            active={route.includes("dams")}
+            className="ml-auto"
+            onClick={() => push("/dams")}
+          >
+            <div className="buttonText">DAMS</div>
+          </Nav.Link> */}
+          <Nav.Link className="ml-auto" onClick={() => push("/apply")}>
+            <Button
+              style={{
+                margin: "-3px 0 -3px 5px",
+              }}
+              variant="outline-info"
+              size="sm"
+            >
+              APPLY
+            </Button>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

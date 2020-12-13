@@ -12,6 +12,7 @@ interface Section {
   section_id?: string; // id to find on page #section-id etc.
   bgColor?: any;
   textColor?: string;
+  dog_ref?: { _ref: string };
   description_before?: any;
   description_after?: any;
   show_logo?: boolean;
@@ -23,12 +24,14 @@ interface Section {
   images?: SanityImage[];
   photos?: { images: SanityImage[]; decoration?: string };
   ext_photo?: ExternalPhoto;
+  dog?: Dog;
   // ext_photos?: ExternalPhoto;
   _type: string;
   decoration?: boolean; // spacer with decoration or not.
   testimonial_refs?: any[];
   testimonials?: any[];
   testimonial?: any;
+  show_sex_icon?: boolean;
   badges?: any[];
   badges_refs?: any[];
   title_type?: string;

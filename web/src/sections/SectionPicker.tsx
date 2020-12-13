@@ -21,6 +21,7 @@ import AutoLogo from "./auto_logo/AutoLogo";
 import AutoImageGrid from "./auto_image_grid/AutoImageGrid";
 import AutoIntroText from "./auto_intro_text/AutoIntroText";
 import AutoPhotoHeader from "./auto_photo_header/AutoPhotoHeader";
+import DogListItem from "./dog_list_item/DogListItem";
 
 const StyledSection = styled.section<{
   bgColorVar: string;
@@ -102,6 +103,9 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       }
       case "auto_photo_header": {
         return <AutoPhotoHeader {...{ section, index }} />;
+      }
+      case "dog_list_item": {
+        return <DogListItem {...{ section, index }} />;
       }
       default:
         return (
