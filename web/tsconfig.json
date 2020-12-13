@@ -43,8 +43,7 @@
     "next-env.d.ts",
     "**/*.ts", "util/firebase.js",
     "**/*.tsx",
-    "./node_modules/@sanity/base/types/**/*.ts", "src/components/blockContent/BlockContent.jsx", "src/components/blockContent/BlockContent.jsx", "pages/api/mailer/helpter.js", "pages/api/mailer/tags.js", "pages/api/mailer/mailchimp.js"
-  ],
+    "./node_modules/@sanity/base/types/**/*.ts", "src/components/blockContent/BlockContent.jsx", "src/components/blockContent/BlockContent.jsx",  "setupTests.js"  ],
   "exclude": [
     "node_modules"
   ]
