@@ -7045,7 +7045,7 @@ react-easy-crop@3.3.1:
     normalize-wheel "^1.0.1"
     tslib "2.0.1"
 
-"react-eyedrop@github:edolyne/react-eyedrop#feature/crossOrigin":
+react-eyedrop@edolyne/react-eyedrop#feature/crossOrigin:
   version "4.1.3"
   resolved "https://codeload.github.com/edolyne/react-eyedrop/tar.gz/16274c0a93b5a2cc4269f9e3b3d12499f13aeed8"
   dependencies:
