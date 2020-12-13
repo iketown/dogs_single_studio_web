@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { full_width_text_section } from "./fwtSection";
 import FullWidthText from "./FullWidthText";
 
+// useless update for main.
 describe("FullWidthText", () => {
   test("renders without crashing", () => {
     render(<FullWidthText section={full_width_text_section} index={0} />);
