@@ -7,7 +7,7 @@ interface HeroHeaderI {
 interface Section {
   _key?: string;
   _id?: string;
-  name: string;
+  name?: string;
   location?: string;
   section_id?: string; // id to find on page #section-id etc.
   bgColor?: any;

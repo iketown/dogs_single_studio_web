@@ -5,7 +5,7 @@
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "3.0.25",
@@ -32,7 +32,6 @@
     "emailjs-com": "2.6.3",
     "final-form": "4.20.1",
     "final-form-arrays": "3.0.2",
-    "firebase-admin": "9.4.1",
     "framer-motion": "2.9.4",
     "google-map-react": "2.1.9",
     "google-spreadsheet": "3.0.14",

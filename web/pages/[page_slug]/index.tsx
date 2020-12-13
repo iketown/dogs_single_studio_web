@@ -24,9 +24,12 @@ const PageIndex = (props) => {
         <JTree data={props} />
       </div>
     );
-  const sections = page.default_sections.map(
+  const sections = page.default_sections?.map(
     // if there's nothing in the default_sections array, its a custom page.
-    (section, index) => (!!section?._id ? section : page.custom_sections[index])
+    (section, index) =>
+      !!section?._id
+        ? section
+        : page.custom_sections && page.custom_sections[index]
   );
 
   return (

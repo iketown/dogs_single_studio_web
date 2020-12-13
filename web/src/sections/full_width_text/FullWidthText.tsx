@@ -10,7 +10,6 @@ const StyledText = styled.div`
 //
 //
 const FullWidthText: React.FC<SectionPickerI> = ({ section }) => {
-  console.log("fwt section", { section: JSON.stringify(section) });
   return (
     <Container className="py-4">
       <StyledText>
