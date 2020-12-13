@@ -33,9 +33,7 @@ const PageIndex = (props) => {
     <Layout {...{ layout_info }}>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {layout_info.kennel_name} | {query.page_slug}
-        </title>
+        <title>{layout_info.kennel_name}</title>
       </Helmet>
       {displaySections(sections)}
     </Layout>
