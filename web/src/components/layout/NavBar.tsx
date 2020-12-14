@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
+import classnames from "classnames";
+import MultiLink from "@util/router/MultiLink";
 
 const StyledNavBar = styled(Navbar)`
   background: #ffffffcc;
@@ -48,13 +50,11 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
 
   return (
     <StyledNavBar expand="md" fixed="top">
-      <Link href={"/"}>
-        <a>
-          <h3 style={{ color: "var(--color-darkA)" }} className="title">
-            {kennel_name}
-          </h3>
-        </a>
-      </Link>
+      <MultiLink href={"/"} as="/">
+        <h3 style={{ color: "var(--color-darkA)" }} className="title">
+          {kennel_name}
+        </h3>
+      </MultiLink>
       <Navbar.Toggle
         className="ml-auto"
         aria-controls="responsive-navbar-nav"
@@ -63,6 +63,16 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
       <Navbar.Collapse in={menuOpen}>
         <Nav className="ml-auto">
           {allLinks?.map(({ button_text, slug }, linkIndex) => {
+            return (
+              <MultiLink
+                key={slug}
+                href="/[page_slug]"
+                as={`/${slug}`}
+                className={classnames("ml-auto nav-link")}
+              >
+                {button_text.toUpperCase()}
+              </MultiLink>
+            );
             return (
               <Nav.Link
                 key={slug}

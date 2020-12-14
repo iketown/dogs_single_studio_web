@@ -14,6 +14,7 @@ import centered_title from "./sections/centered_title";
 import dog from "./dog";
 import dog_external from "./dog_external";
 import dog_list_item from "./sections/dog_list_item";
+import litter_list_item from "./sections/litter_list_item";
 import dynamic_message from "./dynamicMessage";
 import external_photo, {
   external_photo_array,
@@ -71,6 +72,7 @@ export default createSchema({
     imageCarousel,
     link,
     litter,
+    litter_list_item,
     map_section,
     page,
     palette,

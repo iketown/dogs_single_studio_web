@@ -2,6 +2,7 @@ interface LayoutI {
   akc_link?: string;
   badges?: any[];
   badge_refs?: any[];
+  breeder_slug?: string;
   waitingList?: any[];
   city?: string;
   intro_text?: any;

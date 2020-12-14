@@ -99,6 +99,11 @@ export const referenceFields = [
     name: "akc_link",
     type: "string",
   },
+  {
+    name: "slug",
+    type: "slug",
+    options: { source: "kennel_name" },
+  },
 ];
 
 export default {

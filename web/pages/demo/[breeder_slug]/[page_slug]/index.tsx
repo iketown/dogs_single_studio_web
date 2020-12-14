@@ -5,14 +5,16 @@ import { getPageData } from "sanityQueries/pageQuery";
 
 //
 //
-const RealPage = (props) => {
+const DemoPage = (props) => {
   return <PageSlugIndex {...props} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const page_slug = params.page_slug as string;
-  const data = await getPageData({ page_slug });
+  const breeder_slug = params.breeder_slug as string;
+
+  const data = await getPageData({ page_slug, breeder_slug });
   return { props: data };
 };
 
-export default RealPage;
+export default DemoPage;

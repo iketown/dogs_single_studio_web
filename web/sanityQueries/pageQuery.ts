@@ -1,6 +1,6 @@
 import groq from "groq";
 import sanityClient from "@util/sanityClient";
-import { layoutInfo, getPageQuery } from "./sharedQ";
+import { layoutInfo, getPageQuery, getPageQueryMulti } from "./sharedQ";
 import { waitingListQuery } from "./waitingListQ";
 export const sectionInfo = groq`
   {
@@ -19,20 +19,25 @@ const pageInfo = groq`
       background_color,
 `;
 
-const pageQGroq2 = getPageQuery(groq`
-   "sections_custom_page": pages[_type == 'custom_page' && slug.current == $page_slug ][0]{
-   		"default_sections": sections[]-> ${sectionInfo},
-			"custom_sections": sections[] ${sectionInfo},
-      ${pageInfo}
-   },
-   "sections_default_page": pages[_type == 'default_page']->[slug.current==$page_slug][0]{
-   		"default_sections": sections[]-> ${sectionInfo},
-			"custom_sections": sections[] ${sectionInfo},
-      ${pageInfo}
-   },
-`);
+const pageGroq = groq`
+"sections_custom_page": pages[_type == 'custom_page' && slug.current == $page_slug ][0]{
+    "default_sections": sections[]-> ${sectionInfo},
+   "custom_sections": sections[] ${sectionInfo},
+   ${pageInfo}
+},
+"sections_default_page": pages[_type == 'default_page']->[slug.current==$page_slug][0]{
+    "default_sections": sections[]-> ${sectionInfo},
+   "custom_sections": sections[] ${sectionInfo},
+   ${pageInfo}
+},
+`;
+const pageQGroqSingle = getPageQuery(pageGroq);
+const pageQGroqMulti = getPageQueryMulti(pageGroq);
 
-export const getPageData = async (params: { page_slug: string }) => {
-  const data = await sanityClient.fetch(pageQGroq2, params);
-  return data;
+export const getPageData = async (params: {
+  page_slug: string;
+  breeder_slug?: string;
+}) => {
+  if (params.breeder_slug) return sanityClient.fetch(pageQGroqMulti, params);
+  return sanityClient.fetch(pageQGroqSingle, params);
 };

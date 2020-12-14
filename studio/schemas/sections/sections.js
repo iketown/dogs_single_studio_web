@@ -19,6 +19,11 @@ const sectionTypesNoSavedVersions = [
     type: "dog_list_item",
     title: "Dog List Item",
   },
+  {
+    name: "litter_list_item",
+    type: "litter_list_item",
+    title: "Litter List Item",
+  },
 ];
 
 const sectionTypes = [
