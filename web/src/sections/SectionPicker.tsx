@@ -68,6 +68,7 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       }
       case "center_logo":
         return <CenterLogo {...{ section, index }} />;
+      case "full_width_text_saved":
       case "full_width_text": {
         return <FullWidthText {...{ section, index }} />;
       }

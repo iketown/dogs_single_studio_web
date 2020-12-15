@@ -1,5 +1,11 @@
 import groq from "groq";
 import sanityClient from "@util/sanityClient";
+import { sectionTypes } from "../../studio/schemas/sections/sections";
+
+const savedSectionTypes = sectionTypes
+  .map(({ name }) => `"${name}_saved"`)
+  .join(", ");
+
 import {
   layoutInfo,
   getPageQuery,
@@ -19,7 +25,7 @@ export const sectionInfo = groq`
      "badges_refs": badges[]->,
      "dog": dog_ref->,
      "litter": litter_ref->,
-     "blockContent": blockContent[] ${blockContentWithLinks}
+     "blockContent": blockContent[] ${blockContentWithLinks},
   }
 `;
 const pageInfo = groq`

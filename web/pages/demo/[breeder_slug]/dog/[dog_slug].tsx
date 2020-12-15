@@ -3,8 +3,6 @@ import { getSingleDogData } from "@sanityQueries/dogPageQ";
 import { GetServerSideProps } from "next";
 import React from "react";
 
-//
-//
 const DogPage = ({ layout_info, dog }) => {
   return <DogSlugIndex {...{ layout_info, dog }} />;
 };

@@ -34,6 +34,7 @@ const singleDogFragment = groq`
       "action_shots": action_shots[]{...,  "dimensions": asset-> metadata.dimensions },
       "head_shots": head_shots[]{...,  "dimensions": asset-> metadata.dimensions },
       middle_sections[]${sectionInfo},
+      "middle_section_refs": middle_sections[]->${sectionInfo},
       "litters": *[_type == 'litter' && references(^._id)]{
       born_date,
       due_date,

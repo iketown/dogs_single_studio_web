@@ -37,7 +37,7 @@ const sectionTypesNoSavedVersions = [
   },
 ];
 
-const sectionTypes = [
+export const sectionTypes = [
   { type: "header_section", name: "header_section", title: "Header" },
   {
     type: "photos_by_text",
