@@ -12,6 +12,25 @@ export const sectionInfo = groq`
      "ext_photos": photos[],
      "badges_refs": badges[]->,
      "dog": dog_ref->,
+     "litter": litter_ref->,
+     "blockContent": blockContent[] {
+       ...,
+       markDefs[]{
+         ...,
+         _type == 'page_link' => {
+           ...,
+           "slug": @.page-> slug.current,
+         },
+         _type == 'dog_link' => {
+           ...,
+           "slug": @.dog-> slug.current,
+         },
+         _type == 'litter_link' => {
+           ...,
+           "slug": @.litter-> slug.current,
+         },
+       }
+       },
   }
 `;
 const pageInfo = groq`

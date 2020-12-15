@@ -37,6 +37,7 @@ const PageSlugIndex = (props) => {
         <title>{layout_info.kennel_name}</title>
       </Helmet>
       {displaySections(sections)}
+      <JTree data={sections} />
     </Layout>
   );
 };

@@ -5,11 +5,13 @@ import styled from "styled-components";
 
 import Badges from "./badges/Badges";
 import CenterLogo from "./center_logo/CenterLogo";
-import CenteredTitle from "./centered_title/CenteredTitle";
+import CenteredTitle, {
+  CenteredTitleAuto,
+} from "./centered_title/CenteredTitle";
 import DevNote from "./dev_note/DevNote";
 import FullWidthImage from "./full_width_image/FullWidthImage";
 import FullWidthText from "./full_width_text/FullWidthText";
-import HeroHeader from "./header_section/HeroHeader";
+import HeroHeader, { HeroHeaderAuto } from "./header_section/HeroHeader";
 import MapSection from "./map_section/MapSection";
 import PhotoGrid from "./photo_grid/PhotoGrid";
 import PhotosByText from "./photos_by_text/PhotosByText";
@@ -22,6 +24,7 @@ import AutoImageGrid from "./auto_image_grid/AutoImageGrid";
 import AutoIntroText from "./auto_intro_text/AutoIntroText";
 import AutoPhotoHeader from "./auto_photo_header/AutoPhotoHeader";
 import DogListItem from "./dog_list_item/DogListItem";
+import LitterListItem from "./litter_list_item/LitterListItem";
 
 const StyledSection = styled.section<{
   bgColorVar: string;
@@ -52,9 +55,12 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       case "photo_grid_custom": {
         return <PhotoGrid {...{ section, index }} />;
       }
+      case "header_section_auto": {
+        return <HeroHeaderAuto {...{ section, index }} />;
+      }
       case "header_section_custom":
       case "header_section": {
-        return <HeroHeader {...{ section }} />;
+        return <HeroHeader {...{ section, index }} />;
       }
       case "center_logo":
         return <CenterLogo {...{ section, index }} />;
@@ -70,6 +76,8 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       case "spacer": {
         return <Spacer {...{ section, index }} />;
       }
+      case "centered_title_auto":
+        return <CenteredTitleAuto {...{ section, index }} />;
       case "centered_title": {
         return <CenteredTitle {...{ section, index }} />;
       }
@@ -106,6 +114,9 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       }
       case "dog_list_item": {
         return <DogListItem {...{ section, index }} />;
+      }
+      case "litter_list_item": {
+        return <LitterListItem {...{ section, index }} />;
       }
       default:
         return (

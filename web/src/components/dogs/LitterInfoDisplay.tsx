@@ -63,7 +63,7 @@ const LitterInfoDisplay: React.FC<{ litter: any }> = ({ litter }) => {
         <BlockContent blocks={litter.short_description} />
       )}
       <div className="mt-4">
-        <Link href={`/litters/[litter_slug]`} as={`/litters/${litter.slug}`}>
+        <Link href={`/litter/[litter_slug]`} as={`/litter/${litter.slug}`}>
           <Button size="lg" variant="info">
             Details
           </Button>

@@ -48,6 +48,8 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
     .map((link, i) => (link.slug ? link : links.custom[i]))
     .filter(({ button_text }) => !!button_text);
 
+  console.log("navbar", route, query);
+
   return (
     <StyledNavBar expand="md" fixed="top">
       <MultiLink href={"/"} as="/">
@@ -68,43 +70,22 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
                 key={slug}
                 href="/[page_slug]"
                 as={`/${slug}`}
-                className={classnames("ml-auto nav-link")}
+                className={classnames("ml-auto nav-link", {
+                  active: query.page_slug === slug,
+                })}
               >
                 {button_text.toUpperCase()}
               </MultiLink>
             );
-            return (
-              <Nav.Link
-                key={slug}
-                active={query.page_slug === slug}
-                className="ml-auto"
-                onClick={() => push("/[page_slug]", `/${slug}`)}
-              >
-                <div className="buttonText">{button_text.toUpperCase()}</div>
-              </Nav.Link>
-            );
           })}
-          <Nav.Link
+          {/* <Nav.Link
             className="ml-auto"
             active={route.includes("puppies")}
             onClick={() => push("/puppies")}
           >
             <div className="buttonText">PUPPIES</div>
-          </Nav.Link>
-          {/* <Nav.Link
-            className="ml-auto"
-            active={route.includes("sires")}
-            onClick={() => push("/sires")}
-          >
-            <div className="buttonText">SIRES</div>
-          </Nav.Link>
-          <Nav.Link
-            active={route.includes("dams")}
-            className="ml-auto"
-            onClick={() => push("/dams")}
-          >
-            <div className="buttonText">DAMS</div>
           </Nav.Link> */}
+
           <Nav.Link className="ml-auto" onClick={() => push("/apply")}>
             <Button
               style={{

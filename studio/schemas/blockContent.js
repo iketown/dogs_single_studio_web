@@ -1,16 +1,12 @@
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
 import React from "react";
-import { FaPaperclip, FaMagic } from "react-icons/fa";
+import { FaPaperclip, FaMagic, FaPaw, FaFileAlt, FaDog } from "react-icons/fa";
 import { referenceFields } from "./breeder";
+
+const colors = {
+  litter: "#00FFFF",
+  dog: "#00FF00",
+  page: "orange",
+};
 export default {
   title: "Block Content",
   name: "blockContent",
@@ -42,6 +38,50 @@ export default {
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
+          {
+            name: "page_link",
+            type: "object",
+            title: "Page Link",
+            fields: [{ name: "page", type: "reference", to: { type: "page" } }],
+            blockEditor: {
+              icon: () => <FaFileAlt color={colors.page} />,
+              render: ({ children, ...props }) => {
+                console.log("pagelink", props);
+                return (
+                  <span style={{ background: colors.page }}>{children}</span>
+                );
+              },
+            },
+          },
+          {
+            name: "dog_link",
+            type: "object",
+            title: "Dog Link",
+            fields: [{ name: "dog", type: "reference", to: { type: "dog" } }],
+            blockEditor: {
+              icon: () => <FaDog color={colors.dog} />,
+              render: ({ children, ...props }) => {
+                console.log("dog", props);
+                return (
+                  <span style={{ background: colors.dog }}>{children}</span>
+                );
+              },
+            },
+          },
+          {
+            name: "litter_link",
+            type: "object",
+            title: "Litter Link",
+            fields: [
+              { name: "litter", type: "reference", to: { type: "litter" } },
+            ],
+            blockEditor: {
+              icon: () => <FaPaw color={colors.litter} />,
+              render: ({ children }) => (
+                <span style={{ background: colors.litter }}>{children}</span>
+              ),
+            },
+          },
           {
             title: "URL",
             name: "link",

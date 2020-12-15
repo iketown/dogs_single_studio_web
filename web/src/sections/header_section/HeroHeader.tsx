@@ -3,16 +3,30 @@ import React, { useEffect, useState } from "react";
 
 import { imageBuilder } from "@util/sanityImage";
 
-const HeroHeader: React.FC<HeroHeaderI> = ({ section }) => {
+const getSanityImageUrl = (img: SanityImage) => {
+  const baseImg = imageBuilder.image(img).width(1000);
+  if (img.show_full) return { show_full: true, url: baseImg.url() }; // no cropping
+  return { show_full: false, url: baseImg.height(500).url() }; // cropped to 1000 x 500;
+};
+
+// HeroHeader is for normal use, no external images
+const HeroHeader: React.FC<SectionPickerI> = ({ section }) => {
+  const images = section.images?.map(getSanityImageUrl);
+  return <HeroHeaderDisplay images={images} />;
+};
+
+// HeroHeaderAuto mixes in external urls from the breeder.  for marketing site.
+export const HeroHeaderAuto: React.FC<SectionPickerI> = ({ section }) => {
+  return <div>auto</div>;
+};
+
+interface HeroHeaderDisplayI {
+  images: { url: string; show_full: boolean }[];
+}
+export const HeroHeaderDisplay: React.FC<HeroHeaderDisplayI> = ({ images }) => {
   const { scrollY } = useViewportScroll();
   const yTransform = useTransform(scrollY, (y) => `${y / 2}px`);
   const [imageIndex, setImageIndex] = useState(0);
-
-  const images = section.images?.map((img) => {
-    const baseImg = imageBuilder.image(img).width(1000);
-    if (img.show_full) return baseImg.url(); // no cropping
-    return baseImg.height(500).url();
-  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,16 +43,14 @@ const HeroHeader: React.FC<HeroHeaderI> = ({ section }) => {
         background: "lightblue",
       }}
     >
-      {images.map((image, i) => {
-        const backgroundSize = section.images[i].show_full
-          ? "contain"
-          : "cover";
+      {images.map(({ url, show_full }, i) => {
+        const backgroundSize = show_full ? "contain" : "cover";
         return (
           <motion.div
-            key={image}
+            key={`${url}${i}`}
             style={{
               position: "absolute",
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${url})`,
               backgroundRepeat: "no-repeat",
               backgroundPositionX: "center",
               backgroundPositionY: yTransform, // parallax
@@ -61,64 +73,3 @@ const HeroHeader: React.FC<HeroHeaderI> = ({ section }) => {
 };
 
 export default HeroHeader;
-
-// const HeroHeaderX: React.FC<HeroHeaderI> = ({ title, heroPhoto }) => {
-//   return (
-//     <ParallaxBanner
-//       // className="your-class"
-//       layers={[
-//         {
-//           image: heroPhoto,
-//           amount: 0.4,
-//           expanded: false,
-//         },
-//         {
-//           children: () => <div />,
-//           amount: 0,
-//           props: {
-//             style: {
-//               backgroundImage:
-//                 'linear-gradient(#00000000 0%,#00000000 50%,#00000044 70%, #00000066 90% )',
-//               height: '100%',
-//               width: '100%',
-//             },
-//           },
-//         },
-//       ]}
-//       style={{
-//         height: '60vh',
-//         marginTop: '-3.5rem',
-//         display: 'flex',
-//         alignItems: 'flex-end',
-//         justifyContent: 'center',
-//         // padding: '1rem',
-//         border: '5px solid white',
-//       }}
-//     >
-//       <h1
-//         style={{
-//           zIndex: 2,
-//           color: 'white',
-//           fontFamily: 'Kaushan Script',
-//           fontSize: '3rem',
-//           textShadow: '2px 2px 3px #000000c7',
-//         }}
-//       >
-//         {title}
-//       </h1>
-//     </ParallaxBanner>
-//   );
-// };
-
-// const HeroContainer = styled.div`
-//   height: 50vh;
-//   position: relative;
-//   overflow: hidden;
-//   display: flex;
-//   justify-content: center;
-//   align-items: flex-end;
-//   padding: 1rem;
-//   width: 100vw;
-//   background: white;
-//   border: 1px solid blue;
-// `;

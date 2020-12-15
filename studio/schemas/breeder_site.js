@@ -8,7 +8,7 @@ const fontOptions = Object.entries(fontCombos).map(([value, { title }]) => ({
 export default {
   type: "document",
   name: "breeder_site",
-  title: "Breeder Site",
+  title: "Web Site",
   fields: [
     {
       name: "title",

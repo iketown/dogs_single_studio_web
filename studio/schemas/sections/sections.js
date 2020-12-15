@@ -10,6 +10,11 @@ const sectionTypesNoSavedVersions = [
     title: "Centered Title",
   },
   {
+    name: "centered_title_auto",
+    type: "centered_title",
+    title: "Centered Title Auto",
+  },
+  {
     name: "map_section",
     type: "map_section",
     title: "Map Section",
@@ -53,12 +58,6 @@ const sectionTypes = [
     name: "full_width_image",
     title: "Full Width Image",
   },
-  // {
-  //   name: "testimonial_list",
-  //   type: "testimonial_list",
-  //   title: "Testimonial List",
-  //   description: "group of testimonials, display rotates through all",
-  // },
   {
     name: "testimonial",
     type: "testimonial",
@@ -103,12 +102,6 @@ export default {
         { name: "bgColor", title: "Background Color", type: "bgColor" },
       ],
     },
-
-    // {
-    //   name: "map_section",
-    //   type: "map_section",
-    //   title: "Map Section",
-    // },
     {
       name: "waiting_list",
       type: "object",

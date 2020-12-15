@@ -96,8 +96,8 @@ const WaitingListSection: React.FC<SectionPickerI> = ({ section, index }) => {
                 <div className="info">
                   {whelp_ref?.litter && (
                     <Link
-                      href={`/litters/[litter_slug]`}
-                      as={`/litters/${whelp_ref.litter.slug.current}`}
+                      href={`/litter/[litter_slug]`}
+                      as={`/litter/${whelp_ref.litter.slug.current}`}
                     >
                       <a className="d-flex">
                         <div className="mr-2">born:</div>

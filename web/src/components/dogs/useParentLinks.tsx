@@ -6,7 +6,7 @@ export const useParentLinks = () => {
     name: string;
   }) => {
     return (
-      <Link href={`/dogs/[dog_slug]`} as={`/dogs/${parent.slug.current}`}>
+      <Link href={`/dog/[dog_slug]`} as={`/dog/${parent.slug.current}`}>
         <a>{parent.name}</a>
       </Link>
     );

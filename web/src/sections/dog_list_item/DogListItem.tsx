@@ -81,8 +81,8 @@ const DogListItem: React.FC<SectionPickerI> = ({ section, index }) => {
     ),
   };
   const linkProps = {
-    href: `/dogs/[dog_slug]`,
-    as: `/dogs/${dog.slug?.current}`,
+    href: `/dog/[dog_slug]`,
+    as: `/dog/${dog.slug?.current}`,
   };
   return (
     <div

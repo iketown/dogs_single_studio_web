@@ -90,8 +90,8 @@ const DogsIndex: React.FC<{ dogs: any; sex: string }> = ({ dogs, sex }) => {
           );
         }
         const linkProps = {
-          href: `/dogs/[dog_slug]`,
-          as: `/dogs/${dog.slug?.current}`,
+          href: `/dog/[dog_slug]`,
+          as: `/dog/${dog.slug?.current}`,
         };
 
         return (
