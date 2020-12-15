@@ -10,10 +10,12 @@ import CenteredTitle, {
 } from "./centered_title/CenteredTitle";
 import DevNote from "./dev_note/DevNote";
 import FullWidthImage from "./full_width_image/FullWidthImage";
-import FullWidthText from "./full_width_text/FullWidthText";
+import FullWidthText, {
+  FullWidthTextAuto,
+} from "./full_width_text/FullWidthText";
 import HeroHeader, { HeroHeaderAuto } from "./header_section/HeroHeader";
 import MapSection from "./map_section/MapSection";
-import PhotoGrid from "./photo_grid/PhotoGrid";
+import PhotoGrid, { PhotoGridAuto } from "./photo_grid/PhotoGrid";
 import PhotosByText from "./photos_by_text/PhotosByText";
 import Spacer from "./spacer/Spacer";
 import Testimonial from "./testimonials/Testimonial";
@@ -50,6 +52,8 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
           </Container>
         );
       }
+      case "photo_grid_auto":
+        return <PhotoGridAuto {...{ section, index }} />;
       case "photo_grid":
       case "photo_grid_default":
       case "photo_grid_custom": {
@@ -66,6 +70,9 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
         return <CenterLogo {...{ section, index }} />;
       case "full_width_text": {
         return <FullWidthText {...{ section, index }} />;
+      }
+      case "intro_text_auto": {
+        return <FullWidthTextAuto {...{ section, index }} />;
       }
       case "testimonial": {
         return <Testimonial {...{ section, index }} />;

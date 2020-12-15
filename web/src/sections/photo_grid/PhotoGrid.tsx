@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
 import Carousel, { Modal, ModalGateway } from "react-images";
+import { useBreederCtx } from "../../components/layout/BreederContext";
+import JTree from "../../../util/JTree";
 
 const StyledGrid = styled.div`
   display: grid;
@@ -42,9 +44,7 @@ const HoverText = styled.div`
   }
 `;
 
-const PhotoGrid: React.FC<SectionPickerI> = ({ section, index }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [carouselActiveIndex, setCarouselActiveIndex] = useState(0);
+const PhotoGridNormal: React.FC<SectionPickerI> = ({ section, index }) => {
   const images = section.images?.map((img) => {
     return {
       fullUrl: imageBuilder.image(img).width(800).url(),
@@ -53,6 +53,57 @@ const PhotoGrid: React.FC<SectionPickerI> = ({ section, index }) => {
       subtitle: img.subtitle,
     };
   });
+  return <PhotoGrid {...{ section, index, images }} />;
+};
+
+export const PhotoGridAuto: React.FC<SectionPickerI> = ({ section, index }) => {
+  const { breeder } = useBreederCtx();
+  const images = section.images?.map((img) => {
+    return {
+      fullUrl: imageBuilder.image(img).width(800).url(),
+      imgUrl: imageBuilder.image(img).width(500).height(500).url(),
+      headline: img.headline,
+      subtitle: img.subtitle,
+    };
+  });
+  const breederImages =
+    breeder.ext_photos?.photos?.map(({ url, cropPxl, title, subtitle }, i) => {
+      const { height, width, x, y } = cropPxl;
+      const fullUrl = url;
+      const imgUrl = `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${url}`;
+      return {
+        fullUrl,
+        imgUrl,
+        headline: title,
+        subtitle,
+      };
+    }) || [];
+
+  const mixedImages = [...breederImages, ...images].slice(0, 6);
+  // return <JTree data={breeder} />;
+  return <PhotoGrid {...{ section, index, images: mixedImages }} />;
+};
+
+interface PhotoGridDisplayI extends SectionPickerI {
+  images: {
+    fullUrl: string;
+    imgUrl: string;
+    headline?: string;
+    subtitle?: string;
+  }[];
+}
+
+const PhotoGrid: React.FC<PhotoGridDisplayI> = ({ section, index, images }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [carouselActiveIndex, setCarouselActiveIndex] = useState(0);
+  // const images = section.images?.map((img) => {
+  //   return {
+  //     fullUrl: imageBuilder.image(img).width(800).url(),
+  //     imgUrl: imageBuilder.image(img).width(500).height(500).url(),
+  //     headline: img.headline,
+  //     subtitle: img.subtitle,
+  //   };
+  // });
   const { description_before, description_after } = section;
   const carouselImages = images.map(({ fullUrl, headline, subtitle }) => {
     return {
@@ -110,4 +161,4 @@ const PhotoGrid: React.FC<SectionPickerI> = ({ section, index }) => {
   );
 };
 
-export default PhotoGrid;
+export default PhotoGridNormal;

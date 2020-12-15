@@ -10,11 +10,6 @@ const sectionTypesNoSavedVersions = [
     title: "Centered Title",
   },
   {
-    name: "centered_title_auto",
-    type: "centered_title",
-    title: "Centered Title Auto",
-  },
-  {
     name: "map_section",
     type: "map_section",
     title: "Map Section",
@@ -28,6 +23,17 @@ const sectionTypesNoSavedVersions = [
     name: "litter_list_item",
     type: "litter_list_item",
     title: "Litter List Item",
+  },
+  {
+    name: "centered_title_auto",
+    type: "centered_title",
+    title: "Centered Title Auto",
+  },
+  { type: "header_section", name: "header_section_auto", title: "Header Auto" },
+  {
+    type: "photo_grid",
+    name: "photo_grid_auto",
+    title: "Photo Grid Auto replace",
   },
 ];
 
@@ -52,6 +58,11 @@ const sectionTypes = [
     type: "full_width_text",
     name: "full_width_text",
     title: "Full Width Text",
+  },
+  {
+    type: "full_width_text",
+    name: "intro_text_auto",
+    title: "Auto Intro Text",
   },
   {
     type: "full_width_image",

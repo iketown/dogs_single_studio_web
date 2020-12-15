@@ -14,7 +14,7 @@ interface LayoutI {
   kennel_name: string;
   kennel_domain_url?: string;
   kennel_subtitle?: string;
-  ext_header_photo?: ExternalPhoto;
+  ext_header_photos?: ExternalPhoto[];
   ext_photos?: {
     photos: ExternalPhoto[];
   };

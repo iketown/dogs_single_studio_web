@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import groq from "groq";
-import JTree from "@util/JTree";
-import sanityClient from "@util/sanityClient";
 import { imageBuilder } from "@util/sanityImage";
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import { Container, Row, Col } from "react-bootstrap";
 import classnames from "classnames";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import BlockContent from "../../components/blockContent/BlockContent";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { FaMars, FaVenus } from "react-icons/fa";
+import styled from "styled-components";
+
+import BlockContent from "../../components/blockContent/BlockContent";
+import MultiLink from "@util/router/MultiLink";
 
 const InfoSide = styled.div`
   display: flex;
@@ -116,9 +115,9 @@ const DogListItem: React.FC<SectionPickerI> = ({ section, index }) => {
                 "pt-2"
               )}
             >
-              <Link {...linkProps}>
-                <a style={{ width: "100%" }}>{photo}</a>
-              </Link>
+              <MultiLink {...linkProps} className="w-100">
+                {photo}
+              </MultiLink>
             </Col>
             <Col
               xs={12}
@@ -138,13 +137,11 @@ const DogListItem: React.FC<SectionPickerI> = ({ section, index }) => {
                     {sexIcon[dog.sex]}
                   </div>
                 )}
-                <Link {...linkProps}>
-                  <a>
-                    <h4 style={{ color: colors.text }}>
-                      {dog.name.toUpperCase()}
-                    </h4>
-                  </a>
-                </Link>
+                <MultiLink {...linkProps}>
+                  <h4 style={{ color: colors.text }}>
+                    {dog.name.toUpperCase()}
+                  </h4>
+                </MultiLink>
                 <p className="text-center">{dog.show_name}</p>
                 {/* {dog.birthday && (
                         <small

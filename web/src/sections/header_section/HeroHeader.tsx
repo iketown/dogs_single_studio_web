@@ -2,6 +2,8 @@ import { motion, useTransform, useViewportScroll } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 import { imageBuilder } from "@util/sanityImage";
+import { useBreederCtx } from "../../components/layout/BreederContext";
+import JTree from "@util/JTree";
 
 const getSanityImageUrl = (img: SanityImage) => {
   const baseImg = imageBuilder.image(img).width(1000);
@@ -17,7 +19,23 @@ const HeroHeader: React.FC<SectionPickerI> = ({ section }) => {
 
 // HeroHeaderAuto mixes in external urls from the breeder.  for marketing site.
 export const HeroHeaderAuto: React.FC<SectionPickerI> = ({ section }) => {
-  return <div>auto</div>;
+  const { breeder } = useBreederCtx();
+
+  const defaultImages = section.images?.map(getSanityImageUrl);
+  const breederImages = breeder.ext_header_photos?.map(
+    ({ url, cropPxl, display_cropped }) => {
+      if (!display_cropped || !cropPxl) return { show_full: true, url };
+      const { height, width, x, y } = cropPxl;
+      const cloudUrl = `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${url}`;
+      return { show_full: false, url: cloudUrl };
+    }
+  );
+  // return <JTree data={breeder} />;
+  return (
+    <HeroHeaderDisplay
+      images={breederImages?.length ? breederImages : defaultImages}
+    />
+  );
 };
 
 interface HeroHeaderDisplayI {

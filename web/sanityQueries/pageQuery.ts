@@ -1,7 +1,13 @@
 import groq from "groq";
 import sanityClient from "@util/sanityClient";
-import { layoutInfo, getPageQuery, getPageQueryMulti } from "./sharedQ";
+import {
+  layoutInfo,
+  getPageQuery,
+  getPageQueryMulti,
+  blockContentWithLinks,
+} from "./sharedQ";
 import { waitingListQuery } from "./waitingListQ";
+
 export const sectionInfo = groq`
   {
     ...,
@@ -13,24 +19,7 @@ export const sectionInfo = groq`
      "badges_refs": badges[]->,
      "dog": dog_ref->,
      "litter": litter_ref->,
-     "blockContent": blockContent[] {
-       ...,
-       markDefs[]{
-         ...,
-         _type == 'page_link' => {
-           ...,
-           "slug": @.page-> slug.current,
-         },
-         _type == 'dog_link' => {
-           ...,
-           "slug": @.dog-> slug.current,
-         },
-         _type == 'litter_link' => {
-           ...,
-           "slug": @.litter-> slug.current,
-         },
-       }
-       },
+     "blockContent": blockContent[] ${blockContentWithLinks}
   }
 `;
 const pageInfo = groq`

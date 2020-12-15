@@ -1,12 +1,34 @@
 import groq from "groq";
 import { waitingListQuery } from "./waitingListQ";
+
+export const blockContentWithLinks = groq`
+{
+  ...,
+  markDefs[]{
+    ...,
+    _type == 'page_link' => {
+      ...,
+      "slug": @.page-> slug.current,
+    },
+    _type == 'dog_link' => {
+      ...,
+      "slug": @.dog-> slug.current,
+    },
+    _type == 'litter_link' => {
+      ...,
+      "slug": @.litter-> slug.current,
+    },
+  }
+}
+`;
 export const layoutInfo = groq`
   "layout_info": {
     ...,
     "font_combo": sites[0]->font_combo,
+      "intro_text": intro_text[] ${blockContentWithLinks},
     "links": sites[0]-> {
       "default": pages[]-> {"slug":slug.current,button_text},
-  		"custom": pages[] {"slug":slug.current,button_text}
+  		"custom": pages[] {"slug":slug.current,button_text},
     },
     "breeder_slug": slug.current,
     "palette": sites[0]-> palette-> {

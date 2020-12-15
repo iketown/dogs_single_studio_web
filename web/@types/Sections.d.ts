@@ -111,6 +111,7 @@ interface ExternalPhoto {
   };
   display_cropped?: boolean;
   title?: string;
+  subtitle?: string;
   url: string;
   zoom: number;
 }

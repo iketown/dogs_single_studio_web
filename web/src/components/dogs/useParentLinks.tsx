@@ -1,4 +1,4 @@
-import Link from "next/link";
+import MultiLink from "@util/router/MultiLink";
 
 export const useParentLinks = () => {
   const getParentLink = (parent: {
@@ -6,9 +6,9 @@ export const useParentLinks = () => {
     name: string;
   }) => {
     return (
-      <Link href={`/dog/[dog_slug]`} as={`/dog/${parent.slug.current}`}>
+      <MultiLink href={`/dog/[dog_slug]`} as={`/dog/${parent.slug.current}`}>
         <a>{parent.name}</a>
-      </Link>
+      </MultiLink>
     );
   };
   const getExternalParentLink = (parent: { link: string; name: string }) => {

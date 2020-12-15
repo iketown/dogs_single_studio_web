@@ -1,5 +1,6 @@
 import { fontCombos } from "@bit/ike76.dog_breeders.font_combos";
-
+import React from "react";
+import { FaGlobe } from "react-icons/fa";
 const fontOptions = Object.entries(fontCombos).map(([value, { title }]) => ({
   value,
   title,
@@ -9,6 +10,7 @@ export default {
   type: "document",
   name: "breeder_site",
   title: "Web Site",
+  icon: () => <FaGlobe color="navy" />,
   fields: [
     {
       name: "title",

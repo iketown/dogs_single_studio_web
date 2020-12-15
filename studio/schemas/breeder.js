@@ -70,16 +70,7 @@ export const referenceFields = [
     },
   },
   { name: "location", type: "geopoint" },
-  {
-    name: "ext_header_photo",
-    title: "External Header Photo",
-    type: "external_photo",
-  },
-  {
-    name: "ext_photos",
-    type: "external_photo_array",
-    description: "these go on the front page and should be squares",
-  },
+
   {
     name: "intro_text",
     title: "Intro Text",
@@ -98,11 +89,6 @@ export const referenceFields = [
   {
     name: "akc_link",
     type: "string",
-  },
-  {
-    name: "slug",
-    type: "slug",
-    options: { source: "kennel_name" },
   },
 ];
 
@@ -123,15 +109,28 @@ export default {
   },
   fields: [
     ...referenceFields,
-    // {
-    //   name: "slug",
-    //   type: "slug",
-    //   title: "Slug",
-    //   options: {
-    //     source: "kennel_name",
-    //     maxLength: 96,
-    //   },
-    // },
+
+    {
+      name: "ext_header_photos",
+      title: "External Header Photos",
+      description: "front page header photos 2 x 1",
+      type: "array",
+      of: [{ type: "external_photo" }],
+    },
+    {
+      name: "ext_photos",
+      type: "external_photo_array",
+      description: "these go on the front page and should be squares",
+    },
+    {
+      name: "slug",
+      type: "slug",
+      title: "Slug",
+      options: {
+        source: "kennel_name",
+        maxLength: 96,
+      },
+    },
     {
       name: "sites",
       type: "array",

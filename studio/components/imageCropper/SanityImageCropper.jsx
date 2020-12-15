@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import PatchEvent, { set, unset } from "part:@sanity/form-builder/patch-event";
 import { generate } from "shortid";
 import Cropper from "react-easy-crop";
-import { Form, FormGroup, FormCheck } from "react-bootstrap";
+import { Form, FormGroup, FormCheck, Button } from "react-bootstrap";
 import { Image } from "cloudinary-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -47,6 +47,19 @@ function SanityImageCropper({ type, value, onChange, ref }) {
       })
     );
   };
+  const setAspectRatio = (aspectX, aspectY) => {
+    const _key = value?._key || generate();
+    const _type = "external_photo";
+    onChange(
+      createPatchFrom({
+        _key,
+        _type,
+        ...value,
+        aspectX,
+        aspectY,
+      })
+    );
+  };
   const onCropComplete = (cropInfo, cropPxl) => {
     const _key = value?._key || generate();
     const _type = "external_photo";
@@ -81,6 +94,14 @@ function SanityImageCropper({ type, value, onChange, ref }) {
         />
       </FormGroup>
       <FormGroup>
+        <Form.Label>subtitle</Form.Label>
+        <Form.Control
+          value={value?.subtitle}
+          onChange={(e) => handleInputChange(e, "subtitle")}
+          ref={ref}
+        />
+      </FormGroup>
+      <FormGroup>
         <Form.Label className="mr-4">Photo Url</Form.Label>
         <Form.Control
           value={value?.url}
@@ -102,7 +123,14 @@ function SanityImageCropper({ type, value, onChange, ref }) {
       {value?.display_cropped && (
         <FormGroup>
           <Form.Label className="mr-4">aspect</Form.Label>
-
+          <div>
+            <Button className="m-3" onClick={() => setAspectRatio(2, 1)}>
+              Header
+            </Button>
+            <Button className="m-3" onClick={() => setAspectRatio(1, 1)}>
+              Square
+            </Button>
+          </div>
           <Form.Control
             type="number"
             value={value?.aspectX}
