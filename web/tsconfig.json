@@ -2,9 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@models/*": [
-        "../scraper/models/*"
-      ],
       "@components/*": [
         "src/components/*"
       ],

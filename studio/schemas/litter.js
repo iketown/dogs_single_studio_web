@@ -43,10 +43,8 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      options: {
-        source: () => "hey now",
-      },
     },
+
     {
       name: "slug",
       type: "slug",
@@ -126,6 +124,11 @@ export default {
     //   description: "general photos of the litter",
     //   of: [{ type: "image", options: { hotspot: true } }],
     // },
+    {
+      name: "show_parents",
+      type: "boolean",
+      description: "show parent cards at the top of litter page",
+    },
     {
       name: "pre_puppy_sections",
       type: "sections",

@@ -31,13 +31,17 @@ export default {
       name: "pages",
       type: "array",
       of: [
-        { type: "page", name: "custom_page", title: "Custom Page" },
         {
           type: "reference",
           name: "default_page",
-          title: "Default Page",
+          title: "Page - linkable",
           description: "pre built page",
           to: { type: "page" },
+        },
+        {
+          type: "page",
+          name: "custom_page",
+          title: "Custom Page - not linkable",
         },
       ],
     },

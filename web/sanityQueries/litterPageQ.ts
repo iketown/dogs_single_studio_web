@@ -22,7 +22,7 @@ const litterFrag = groq`
   ...,
   "whelps": *[_type == 'whelp' && references(^._id)]{
     ...,
-    "buyers": *[_type=="buyer" && references(^._id)][] // maybe handle back up rez in the future?
+    "buyer": *[_type=="buyer" && references(^._id)][0] 
   }
 }
 `;

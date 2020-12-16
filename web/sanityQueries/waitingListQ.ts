@@ -1,7 +1,6 @@
 import sanityClient from "@util/sanityClient";
 import groq from "groq";
 import { getPageQuery } from "./sharedQ";
-import { sectionInfo } from "./pageQuery";
 
 const waitingListSectionQ = groq`
 *[_type=='buyer'] | order(reservation, depositDate asc)  {
@@ -10,7 +9,7 @@ const waitingListSectionQ = groq`
 }
 `;
 export const waitingListQuery = groq`
-  "waitingList": *[_type=='buyer'] | order(reservation, depositDate asc)  {
+  "waitingList": *[_type=='buyer'] | order(joinListDate asc)  {
   ...,
   "reservation": reservation {..., "whelp_ref": whelp_ref->{...,"litter":litter->}}
 }

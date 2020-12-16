@@ -5,8 +5,8 @@ import PhotoGallery from "@components/photos/PhotoGallery";
 import PhotoGalleryCloudinary from "@components/photos/PhotoGalleryCloudinary";
 import { useSections } from "@sections/useSections";
 import JTree from "@util/JTree";
+import MultiLink from "@util/router/MultiLink";
 import moment from "moment";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { Button, Container, ListGroup } from "react-bootstrap";
@@ -78,7 +78,7 @@ const DogSlugIndex = ({ layout_info, dog }) => {
                     <div>ERROR</div>
                   );
                 return (
-                  <Link
+                  <MultiLink
                     href={`/litter/[litter_slug]`}
                     as={`/litter/${litter.slug.current}`}
                     key={litter._id}
@@ -104,7 +104,7 @@ const DogSlugIndex = ({ layout_info, dog }) => {
                           : ""}
                       </span>
                     </ListGroup.Item>
-                  </Link>
+                  </MultiLink>
                 );
               })}
             </ListGroup>

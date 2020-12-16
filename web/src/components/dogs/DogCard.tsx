@@ -1,7 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
-import { FaStar } from "react-icons/fa";
-
+import { Card, Badge } from "react-bootstrap";
+import { FaUser } from "react-icons/fa";
 import DoodleFrame from "../layout/corners/DoodleFrame";
 
 const DogCard: React.FC<{ photoUrl: string; dog: any; index?: number }> = ({
@@ -16,7 +15,7 @@ const DogCard: React.FC<{ photoUrl: string; dog: any; index?: number }> = ({
     reservation,
     adopted_date,
     adopted_name,
-    buyers = [],
+    buyer,
   } = dog;
   const borderColor =
     sex === "male"
@@ -24,17 +23,17 @@ const DogCard: React.FC<{ photoUrl: string; dog: any; index?: number }> = ({
       : sex === "female"
       ? "var(--color-female)"
       : undefined;
-  let reservationString;
-  if (buyers?.length) {
+  let reservationBadge;
+  if (buyer) {
     const {
       firstName,
       lastName,
       reservation: { reservation_date },
-    } = buyers[0];
-    reservationString = (
-      <span>
-        <FaStar /> <strong>{lastName}</strong>
-      </span>
+    } = buyer;
+    reservationBadge = (
+      <Badge variant="warning">
+        Reserved <FaUser color="#00000044" /> {lastName}
+      </Badge>
     );
   }
   return (
@@ -42,16 +41,19 @@ const DogCard: React.FC<{ photoUrl: string; dog: any; index?: number }> = ({
       <Card>
         <Card.Img src={photoUrl} />
         <DoodleFrame color={borderColor} index={index}>
-          <Card.Body>
+          <Card.Body style={{ position: "relative" }}>
             <Card.Title as="h5">{name}</Card.Title>
             <Card.Text>
               <div className="text-muted">
                 {description} {sex}
               </div>
-              <small className="text-muted">{reservationString || " "}</small>
+              {/* <small style={{ fontFamily: "monospace" }} className="text-muted">
+                {reservationBadge || " "}
+              </small> */}
             </Card.Text>
           </Card.Body>
         </DoodleFrame>
+        {reservationBadge}
       </Card>
     </>
   );

@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { useBreederCtx } from "../../src/components/layout/BreederContext";
-import { useDemo } from "@hooks/useDemo";
+import { useDemo } from "../../src/hooks/useDemo";
 import React from "react";
-import { useRouter } from "next/router";
 
 interface MultiLinkI {
   href: string;

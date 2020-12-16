@@ -1,13 +1,12 @@
-import { getWaitingListSection } from "@sanityQueries/waitingListQ";
+import { useBreederCtx } from "@components/layout/BreederContext";
+import MultiLink from "@util/router/MultiLink";
 import { imageBuilder } from "@util/sanityImage";
 import moment from "moment";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
 import { Container, Image, ListGroup } from "react-bootstrap";
 import { FaPaw, FaUser } from "react-icons/fa";
 import styled from "styled-components";
-import { useBreederCtx } from "@components/layout/BreederContext";
+
 //
 //
 const ListItemGrid = styled.div`
@@ -49,11 +48,9 @@ const WaitingListSection: React.FC<SectionPickerI> = ({ section, index }) => {
               <div>
                 <div className="d-flex align-items-center">
                   <FaUser className="text-muted mr-2" />
+                  {buyer.firstName ? buyer.firstName[0] + ". " : ""}
                   {buyer.lastName}
                 </div>
-                <small className="text-muted">
-                  deposit: {moment(buyer.depositDate).format("MM/DD/YY")}
-                </small>
               </div>
             </ListGroup.Item>
           );
@@ -86,6 +83,7 @@ const WaitingListSection: React.FC<SectionPickerI> = ({ section, index }) => {
                 <div className="name">
                   <div className="d-flex align-items-center">
                     <FaUser className="text-muted mr-2" />
+                    {buyer.firstName ? buyer.firstName[0] + ". " : ""}
                     {buyer.lastName}
                   </div>
                   <div className="d-flex align-items-center">
@@ -95,7 +93,7 @@ const WaitingListSection: React.FC<SectionPickerI> = ({ section, index }) => {
                 </div>
                 <div className="info">
                   {whelp_ref?.litter && (
-                    <Link
+                    <MultiLink
                       href={`/litter/[litter_slug]`}
                       as={`/litter/${whelp_ref.litter.slug.current}`}
                     >
@@ -107,7 +105,7 @@ const WaitingListSection: React.FC<SectionPickerI> = ({ section, index }) => {
                           )}
                         </div>
                       </a>
-                    </Link>
+                    </MultiLink>
                   )}
                   {reservation_date && (
                     <div className="d-flex">

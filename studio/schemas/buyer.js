@@ -4,6 +4,9 @@ export default {
   name: "buyer",
   type: "document",
   title: "Puppy Buyer",
+  initialValue: {
+    joinListDate: moment().format(),
+  },
   preview: {
     select: {
       firstName: "firstName",
@@ -23,9 +26,11 @@ export default {
     }) {
       return {
         title: `${lastName} / ${firstName}`,
-        subtitle: `dep: ${moment(depositDate).format("MM/DD/YY")}${
-          puppyName ? "->" + puppyName : ""
-        }`,
+        subtitle: `${
+          depositDate
+            ? "dep:" + moment(depositDate).format("MM/DD/YY")
+            : "no deposit"
+        }${puppyName ? " ➡︎ " + puppyName : ""}`,
         media: puppyImg,
       };
     },
@@ -48,6 +53,15 @@ export default {
     {
       name: "email",
       type: "string",
+    },
+    {
+      name: "joinListDate",
+      type: "datetime",
+      options: {
+        dateFormat: "YYYY-MM-DD",
+        timeFormat: "HH:mm",
+        calendarTodayLabel: "Today",
+      },
     },
     {
       name: "depositDate",
@@ -79,6 +93,7 @@ export default {
     {
       name: "reservation",
       type: "object",
+      //TODO make it impossible to reserve a puppy that has already been reserved.
       fields: [
         { name: "whelp_ref", type: "reference", to: { type: "whelp" } },
         {
