@@ -9,6 +9,7 @@ import CenteredTitle, {
   CenteredTitleAuto,
 } from "./centered_title/CenteredTitle";
 import DevNote from "./dev_note/DevNote";
+
 import FullWidthImage from "./full_width_image/FullWidthImage";
 import FullWidthText, {
   FullWidthTextAuto,
@@ -27,6 +28,7 @@ import AutoIntroText from "./auto_intro_text/AutoIntroText";
 import AutoPhotoHeader from "./auto_photo_header/AutoPhotoHeader";
 import DogListItem from "./dog_list_item/DogListItem";
 import LitterListItem from "./litter_list_item/LitterListItem";
+import FormSection from "./contact_form/FormSection";
 
 const StyledSection = styled.section<{
   bgColorVar: string;
@@ -125,6 +127,9 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       }
       case "litter_list_item": {
         return <LitterListItem {...{ section, index }} />;
+      }
+      case "form_section": {
+        return <FormSection {...{ section, index }} />;
       }
       default:
         return (

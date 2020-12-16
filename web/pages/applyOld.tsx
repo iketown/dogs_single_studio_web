@@ -47,10 +47,7 @@ const ApplyPage = ({
       <Container>
         <div style={{ margin: "2rem 0" }}>
           {pre_text && <BlockContent blocks={pre_text} />}
-          <FormWrapper
-            requiredQuestions={requiredQuestions}
-            form_success={form_success}
-          >
+          <FormWrapper requiredQuestions={requiredQuestions}>
             {questions?.map((question, index) => {
               if (question._type === "form_contact_section")
                 return <ContactForm key={index} />;

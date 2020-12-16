@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col, Container, Form } from "react-bootstrap";
 
 import StateSelector from "./StateSelector";
 import TextInput from "./TextInput";
@@ -19,7 +19,7 @@ const ContactForm = () => {
   };
 
   return (
-    <>
+    <Container>
       <Form.Row>
         <Col>
           <TextInput label="First Name" name="contact.firstName" />
@@ -59,7 +59,7 @@ const ContactForm = () => {
           />
         </Col>
       </Form.Row>
-    </>
+    </Container>
   );
 };
 

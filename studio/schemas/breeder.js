@@ -76,15 +76,15 @@ export const referenceFields = [
     title: "Intro Text",
     type: "blockContent",
   },
-  {
-    name: "ext_logo",
-    type: "object",
-    inputComponent: LogoSetter,
-    fields: [
-      { name: "url", type: "string" },
-      { name: "background_color", type: "string" },
-    ],
-  },
+  // {
+  //   name: "ext_logo",
+  //   type: "object",
+  //   inputComponent: LogoSetter,
+  //   fields: [
+  //     { name: "url", type: "string" },
+  //     { name: "background_color", type: "string" },
+  //   ],
+  // },
 
   {
     name: "akc_link",

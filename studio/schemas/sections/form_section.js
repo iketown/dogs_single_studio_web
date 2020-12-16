@@ -3,6 +3,10 @@ export default {
   type: "document",
   fields: [
     {
+      name: "title",
+      type: "string",
+    },
+    {
       name: "questions",
       type: "array",
       of: [
@@ -10,22 +14,46 @@ export default {
           type: "reference",
           to: { type: "form_question" },
           name: "default_question",
-          title: "Default Question",
+          title: "Question - saved",
         },
         {
           type: "form_question",
           name: "custom_question",
-          title: "Custom Question",
+          title: "Question",
         },
         {
-          type: "string",
+          type: "object",
           name: "form_prebuilt_section",
           title: "Pre Built Section",
-          options: {
-            list: ["contact"],
-          },
+          fields: [
+            {
+              name: "section_type",
+              type: "string",
+              options: {
+                list: ["contact"],
+              },
+            },
+          ],
+        },
+        {
+          name: "inner_sections",
+          type: "object",
+          fields: [
+            { name: "title", type: "string" },
+            { name: "sections", type: "sections" },
+          ],
         },
       ],
+    },
+    {
+      name: "send_to_email",
+      type: "string",
+    },
+    {
+      name: "success_page",
+      description: "where to go after successful submit",
+      type: "reference",
+      to: { type: "page" },
     },
   ],
 };

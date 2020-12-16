@@ -1,10 +1,5 @@
 import groq from "groq";
 import sanityClient from "@util/sanityClient";
-import { sectionTypes } from "../../studio/schemas/sections/sections";
-
-const savedSectionTypes = sectionTypes
-  .map(({ name }) => `"${name}_saved"`)
-  .join(", ");
 
 import {
   layoutInfo,
@@ -12,10 +7,8 @@ import {
   getPageQueryMulti,
   blockContentWithLinks,
 } from "./sharedQ";
-import { waitingListQuery } from "./waitingListQ";
 
-export const sectionInfo = groq`
-  {
+const innerSectionInfo = groq`
     ...,
      "testimonial_refs":testimonials[]->,
      photos {..., 'images': images[]{...,asset->}},
@@ -25,9 +18,30 @@ export const sectionInfo = groq`
      "badges_refs": badges[]->,
      "dog": dog_ref->,
      "litter": litter_ref->,
-     "blockContent": blockContent[] ${blockContentWithLinks},
+     success_page-> {slug},
+     "blockContent": blockContent[] ${blockContentWithLinks}
+`;
+
+export const sectionInfo = groq`
+  {
+    ${innerSectionInfo},
+      _type == 'form_section' => {
+        questions[]{
+          ...,
+          _type == "inner_sections" => {
+            sections[]{
+              ${innerSectionInfo},
+              ...@->{
+                ${innerSectionInfo}
+              },
+            }
+          },
+          ...@->,
+        },
+      },
   }
 `;
+
 const pageInfo = groq`
       background_image,
       background_color,

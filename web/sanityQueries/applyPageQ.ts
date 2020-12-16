@@ -10,13 +10,6 @@ const applyPageGroq2 = groq`
 				pre_sections, "pre_sections_refs": pre_sections[]->, post_sections,
       },
       form_success,
-      // application_form_custom { 
-      //   "stock_questions": questions[]->, 
-      //   "custom_questions": questions[],  
-      //   pre_text,post_text,
-      //   pre_sections, post_sections,
-      // },
-      // use_custom_form, 
 `;
 const applyPageQ = getPageQuery(applyPageGroq2);
 

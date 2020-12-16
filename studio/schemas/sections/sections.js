@@ -79,6 +79,11 @@ export const sectionTypes = [
     type: "badge_array",
     title: "Badges",
   },
+  {
+    name: "form",
+    type: "form_section",
+    title: "Form",
+  },
 ];
 
 export default {
@@ -102,6 +107,12 @@ export default {
       name: "spacer",
       title: "Spacer",
       description: "separator between sections",
+      preview: {
+        select: { height: "height" },
+        prepare({ height }) {
+          return { title: "Spacer", subtitle: `${height} rems` };
+        },
+      },
       fields: [
         {
           name: "height",
@@ -110,7 +121,6 @@ export default {
           description: "height in rems",
         },
         { name: "section_id", title: "Section Id", type: "string" },
-        { name: "bgColor", title: "Background Color", type: "bgColor" },
       ],
     },
     {

@@ -22,6 +22,7 @@ import external_photo, {
 import form from "./sections/contact_form/form";
 import form_question from "./sections/contact_form/form_question";
 import form_success from "./sections/contact_form/form_success";
+import form_section from "./sections/form_section";
 import full_width_image from "./full_width_image";
 import full_width_text from "./fullWidthText";
 import header_section from "./sections/header_section";
@@ -64,8 +65,9 @@ export default createSchema({
     external_photo_array,
     external_photo,
     form_question,
-    form_success,
-    form,
+    // form_success,
+    form_section,
+    // form,
     full_width_image,
     full_width_text,
     header_section,

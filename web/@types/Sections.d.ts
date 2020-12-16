@@ -36,6 +36,7 @@ interface Section {
   badges_refs?: any[];
   title_type?: string;
   slug?: { current: string };
+  send_to_email?: string;
   buttonText?: string;
   height?: number;
   colors?: {
@@ -43,6 +44,9 @@ interface Section {
     textColorVar: string;
   };
   waitingList?: any;
+  questions?: FormQuestion[];
+  question_refs?: FormQuestion[];
+  success_page?: { slug: { current: string } };
 }
 
 interface LogoIntroI {

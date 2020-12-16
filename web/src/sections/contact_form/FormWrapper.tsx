@@ -1,23 +1,39 @@
+import JTree from "@util/JTree";
 import axios from "axios";
 import React, { useEffect, useRef } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Form } from "react-final-form";
 
-import FormSuccessScreen from "./FormSuccessScreen";
+import { useDemo } from "../../hooks/useDemo";
 import { validate } from "./formValidate";
 
 const FormWrapper: React.FC<{
-  requiredQuestions: any[];
-  form_success: any;
-}> = ({ children, requiredQuestions, form_success }) => {
+  requiredQuestions?: any[];
+  send_to_email?: string;
+  success_page_slug?: string;
+}> = ({
+  children,
+  requiredQuestions = [],
+  send_to_email,
+  success_page_slug,
+}) => {
   const formRef = useRef<HTMLFormElement>(null);
+  const { mixedPush } = useDemo();
 
   const handleSubmit = async (values) => {
-    const userId = process.env.NEXT_PUBLIC_EMAILJS_USERID;
-    return axios.post("/api/mailer", { values }).then((res) => {
-      console.log({ res });
-      console.log(res.data);
-    });
+    return axios
+      .post("/api/mailer", { values, send_to_email })
+      .then((res) => {
+        console.log({ res });
+        console.log(res.data);
+      })
+      .then(() => {
+        if (success_page_slug) {
+          mixedPush("/[page_slug]", `/${success_page_slug}`);
+        } else {
+          mixedPush("/", "/");
+        }
+      });
     // clear form values, redirect to conf page
   };
 
@@ -26,14 +42,23 @@ const FormWrapper: React.FC<{
       {({ handleSubmit, values, submitSucceeded }) => {
         return (
           <>
-            {submitSucceeded && <FormSuccessScreen {...{ form_success }} />}
-            <form
-              style={{ filter: submitSucceeded ? "blur(1px)" : "" }}
-              ref={formRef}
-              onSubmit={handleSubmit}
-            >
+            <form className="my-4" ref={formRef} onSubmit={handleSubmit}>
               {children}
-              <Button type="submit">Send</Button>
+              <Container>
+                <div className="my-4">
+                  <Button
+                    style={{
+                      color: "white",
+                      backgroundColor: "var(--color-darkB)",
+                      border: "1px solid var(--color-darkA)",
+                    }}
+                    block
+                    type="submit"
+                  >
+                    Send
+                  </Button>
+                </div>
+              </Container>
             </form>
           </>
         );

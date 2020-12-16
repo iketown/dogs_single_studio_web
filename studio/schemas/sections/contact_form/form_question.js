@@ -1,7 +1,10 @@
+import React from "react";
+import { FaRegQuestionCircle } from "react-icons/fa";
 export default {
   type: "document",
   name: "form_question",
   title: "Form Question",
+  icon: FaRegQuestionCircle,
   fields: [
     {
       name: "question_main",
