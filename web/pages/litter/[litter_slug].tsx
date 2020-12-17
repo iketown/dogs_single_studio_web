@@ -2,9 +2,14 @@ import LitterSlugIndex from "@pages/LitterSlugIndex";
 import { getLitterData } from "@sanityQueries/litterPageQ";
 import { GetServerSideProps } from "next";
 import React from "react";
+import { NonDemoOnly } from "../../util/router/demo_settings";
 
 const LitterPage = ({ layout_info, litter }) => {
-  return <LitterSlugIndex {...{ layout_info, litter }} />;
+  return (
+    <NonDemoOnly>
+      <LitterSlugIndex {...{ layout_info, litter }} />
+    </NonDemoOnly>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {

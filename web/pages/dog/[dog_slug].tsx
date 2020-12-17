@@ -2,11 +2,16 @@ import DogSlugIndex from "@pages/DogSlugIndex";
 import { getSingleDogData } from "@sanityQueries/dogPageQ";
 import { GetServerSideProps } from "next";
 import React from "react";
+import { NonDemoOnly } from "../../util/router/demo_settings";
 
 //
 //
 const DogPage = ({ layout_info, dog }) => {
-  return <DogSlugIndex {...{ layout_info, dog }} />;
+  return (
+    <NonDemoOnly>
+      <DogSlugIndex {...{ layout_info, dog }} />
+    </NonDemoOnly>
+  );
 };
 
 export default DogPage;

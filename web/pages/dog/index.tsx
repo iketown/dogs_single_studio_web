@@ -1,7 +1,12 @@
 import React from "react";
+import { NonDemoOnly } from "../../util/router/demo_settings";
 
 const DogsIndex = () => {
-  return <div>Dogs index</div>;
+  return (
+    <NonDemoOnly>
+      <div>Dogs index</div>
+    </NonDemoOnly>
+  );
 };
 
 export default DogsIndex;

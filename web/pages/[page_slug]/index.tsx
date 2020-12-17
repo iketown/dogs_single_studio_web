@@ -1,3 +1,4 @@
+import { NonDemoOnly } from "@util/router/demo_settings";
 import PageSlugIndex from "@pages/PageSlugIndex";
 import { GetServerSideProps } from "next";
 import React from "react";
@@ -6,7 +7,11 @@ import { getPageData } from "sanityQueries/pageQuery";
 //
 //
 const RealPage = (props) => {
-  return <PageSlugIndex {...props} />;
+  return (
+    <NonDemoOnly>
+      <PageSlugIndex {...props} />
+    </NonDemoOnly>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {

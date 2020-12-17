@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useBreederCtx } from "../components/layout/BreederContext";
+import { isDemo } from "../../util/router/demo_settings";
 
 export const useDemo = () => {
   const router = useRouter();
-  const isDemo = router.route.includes("/demo/");
   const query = router.query;
 
   const breeder_slug = query.breeder_slug;

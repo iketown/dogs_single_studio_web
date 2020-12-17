@@ -2,11 +2,15 @@ import PageSlugIndex from "@pages/PageSlugIndex";
 import { GetServerSideProps } from "next";
 import React from "react";
 import { getPageData } from "sanityQueries/pageQuery";
-
+import { DemoOnly } from "@util/router/demo_settings";
 //
 //
 const DemoPage = (props) => {
-  return <PageSlugIndex {...props} />;
+  return (
+    <DemoOnly>
+      <PageSlugIndex {...props} />
+    </DemoOnly>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
