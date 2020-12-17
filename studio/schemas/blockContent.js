@@ -2,6 +2,18 @@ import React from "react";
 import { FaPaperclip, FaMagic, FaPaw, FaFileAlt, FaDog } from "react-icons/fa";
 import { referenceFields } from "./breeder";
 
+const CenteredText = (props) => {
+  const style = { textAlign: "center" };
+  switch (props.style) {
+    case "center_h2":
+      return <h2 {...{ style }}>{props.children}</h2>;
+    case "center_h3":
+      return <h3 {...{ style }}>{props.children}</h3>;
+    default:
+      return <div {...{ style }}>{props.children}</div>;
+  }
+};
+
 const colors = {
   litter: "#00FFFF",
   dog: "#00FF00",
@@ -26,6 +38,21 @@ export default {
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
         { title: "Quote", value: "blockquote" },
+        {
+          title: "center",
+          value: "center_normal",
+          blockEditor: { render: CenteredText },
+        },
+        {
+          title: "center h2",
+          value: "center_h2",
+          blockEditor: { render: CenteredText },
+        },
+        {
+          title: "center h3",
+          value: "center_h3",
+          blockEditor: { render: CenteredText },
+        },
       ],
       lists: [{ title: "Bullet", value: "bullet" }],
       // Marks let you mark up inline text in the block editor.

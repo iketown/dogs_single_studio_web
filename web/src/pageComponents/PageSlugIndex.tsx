@@ -2,7 +2,6 @@ import Custom404 from "@components/404";
 import Layout from "@components/layout/Layout";
 import { useSections } from "@sections/useSections";
 import JTree from "@util/JTree";
-import { useRouter } from "next/router";
 import React from "react";
 import { useRef } from "react";
 import { Helmet } from "react-helmet";
@@ -10,7 +9,6 @@ import { Helmet } from "react-helmet";
 //
 //
 const PageSlugIndex = (props) => {
-  const { query } = useRouter();
   const { sections_custom_page, sections_default_page, layout_info } = props;
   const { displaySections } = useSections();
   // this component works for custom pages OR default pages, so we have to check which type this is:  either sections_custom_page or sections_default_page;  the other should be undefined;

@@ -53,21 +53,5 @@ export default {
         list: fontOptions,
       },
     },
-    // {
-    //   name: "application_form_standard",
-    //   title: "Standard Form",
-    //   type: "reference",
-    //   to: { type: "form" },
-    //   description: "shown on /apply page",
-    // },
-    // {
-    //   name: "form_success",
-    //   title: "Form Success",
-    //   type: "form_success",
-    // },
-    {
-      name: "puppiesPreSections",
-      type: "sections",
-    },
   ],
 };

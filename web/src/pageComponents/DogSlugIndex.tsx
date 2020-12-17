@@ -30,6 +30,7 @@ const DogSlugIndex = ({ layout_info, dog }) => {
     litters,
     middle_sections,
     middle_section_refs,
+    show_litters,
   } = dog;
   const middleSectionAll = middle_section_refs?.map((sect, i) =>
     sect._id ? sect : middle_sections[i]
@@ -62,7 +63,7 @@ const DogSlugIndex = ({ layout_info, dog }) => {
       {displaySections(middleSectionAll)}
       <Container className="my-4">
         {/* {description && <BlockContent blocks={description} />} */}
-        {!litters?.length ? null : (
+        {show_litters && litters?.length ? (
           <div>
             <ListGroup>
               <ListGroup.Item>
@@ -109,7 +110,7 @@ const DogSlugIndex = ({ layout_info, dog }) => {
               })}
             </ListGroup>
           </div>
-        )}
+        ) : null}
         {action_shots && (
           <div className="my-4">
             <PhotoGallery photos={action_shots} />

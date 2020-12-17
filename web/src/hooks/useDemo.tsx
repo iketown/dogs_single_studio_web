@@ -4,8 +4,9 @@ import { useBreederCtx } from "../components/layout/BreederContext";
 export const useDemo = () => {
   const router = useRouter();
   const isDemo = router.route.includes("/demo/");
-  const { breeder } = useBreederCtx();
-  const { breeder_slug } = breeder;
+  const query = router.query;
+
+  const breeder_slug = query.breeder_slug;
 
   const mixedPush = (href: string, as: string) => {
     const mixedHref = isDemo ? `/demo/[breeder_slug]${href}` : href;

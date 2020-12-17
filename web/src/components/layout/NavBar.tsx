@@ -48,8 +48,6 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
     .map((link, i) => (link.slug ? link : links.custom[i]))
     .filter(({ button_text }) => !!button_text);
 
-  console.log("navbar", route, query);
-
   return (
     <StyledNavBar expand="md" fixed="top">
       <MultiLink href={"/"} as="/">
@@ -67,7 +65,7 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
           {allLinks?.map(({ button_text, slug }, linkIndex) => {
             return (
               <MultiLink
-                key={slug}
+                key={button_text + slug}
                 href="/[page_slug]"
                 as={`/${slug}`}
                 className={classnames("ml-auto nav-link", {
@@ -78,25 +76,6 @@ const NavBarComponent: React.FC<{ layout_info: LayoutI }> = ({
               </MultiLink>
             );
           })}
-          {/* <Nav.Link
-            className="ml-auto"
-            active={route.includes("puppies")}
-            onClick={() => push("/puppies")}
-          >
-            <div className="buttonText">PUPPIES</div>
-          </Nav.Link> */}
-
-          <Nav.Link className="ml-auto" onClick={() => push("/apply")}>
-            <Button
-              style={{
-                margin: "-3px 0 -3px 5px",
-              }}
-              variant="outline-info"
-              size="sm"
-            >
-              APPLY
-            </Button>
-          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </StyledNavBar>

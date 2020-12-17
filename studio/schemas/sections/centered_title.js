@@ -7,6 +7,9 @@ export default {
       title: "text",
       subtitle: "subtitle",
     },
+    prepare({ title, subtitle }) {
+      return { title: `${title} - centered title`, subtitle };
+    },
   },
   fields: [
     { name: "text", type: "string", title: "Text" },

@@ -108,9 +108,10 @@ const Layout: React.FC<{ layout_info: LayoutI }> = ({
         <FontHandler {...{ fonts }}>
           <NavBar {...{ layout_info }} />
           <FooterPusher>
-            <div>
+            <div className="mb-4">
               <div style={{ padding: "30px", background: "whitesmoke" }} />
               <motion.div
+                // this fades in each page on transition
                 animate="in"
                 initial="initial"
                 exit="exit"

@@ -60,7 +60,6 @@ export default {
       title: "Show Name",
       type: "string",
     },
-
     {
       name: "birthday",
       type: "date",
@@ -74,18 +73,6 @@ export default {
       },
       validation: (Rule) => Rule.required().warning("Must choose sex"),
     },
-    // {
-    //   name: "head_shots_ext",
-    //   description: "hosted externally, served by cloudinary",
-    //   title: "External Head Shots",
-    //   type: "external_photo_array",
-    // },
-    // {
-    //   name: "action_shots_ext",
-    //   description: "hosted externally, served by cloudinary",
-    //   title: "External Action Shots",
-    //   type: "external_photo_array",
-    // },
     {
       name: "head_shots",
       title: "Head Shots",
@@ -137,6 +124,11 @@ export default {
     {
       name: "middle_sections",
       type: "sections",
+    },
+    {
+      name: "show_litters",
+      description: "show litters on details page",
+      type: "boolean",
     },
   ],
   // dad

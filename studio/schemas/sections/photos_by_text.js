@@ -20,23 +20,11 @@ export default {
       type: "image_carousel",
       title: "Photos",
     },
-
     {
       name: "blockContent",
       type: "blockContent",
       title: "Text",
     },
-    // {
-    //   name: "photo_position",
-    //   type: "string",
-    //   title: "Photo Position",
-    //   description: "OPPOSITE or LEFT are default",
-    //   options: {
-    //     list: ["left", "right", "opposite_of_last"],
-    //     layout: "radio",
-    //     direction: "horizontal",
-    //   },
-    // },
     { name: "section_id", title: "Section Id", type: "string" },
     {
       name: "colorScheme",

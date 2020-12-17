@@ -6,6 +6,15 @@ export default {
   title: "Page",
   description: "a single page within a website: about us, puppies, etc",
   icon: FaFileImage,
+  preview: {
+    select: { button_text: "button_text", title: "title" },
+    prepare({ button_text, title }) {
+      return {
+        title,
+        subtitle: button_text ? `buttton: ${button_text}` : ``,
+      };
+    },
+  },
   fields: [
     {
       name: "title",
