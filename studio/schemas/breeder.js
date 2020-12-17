@@ -132,6 +132,10 @@ export default {
       },
     },
     {
+      name: "kennel_domain_url",
+      type: "string",
+    },
+    {
       name: "sites",
       type: "array",
       description: "first site will be live, others for dev etc",
