@@ -1,9 +1,21 @@
 import sanityClient from "part:@sanity/base/client";
 import moment from "moment";
 import React from "react";
+import { FaPaw } from "react-icons/fa";
+
+const PawsIcon = () => (
+  <div style={{ position: "relative" }}>
+    <FaPaw color="tan" style={{ position: "absolute", top: 0, left: 0 }} />
+    <FaPaw color="brown" style={{ position: "absolute", top: 0, right: 0 }} />
+    <FaPaw style={{ position: "absolute", bottom: 0, right: 0 }} />
+    <FaPaw color="blue" style={{ position: "absolute", bottom: 0, left: 0 }} />
+  </div>
+);
+
 export default {
   type: "document",
   name: "litter",
+  icon: PawsIcon,
   preview: {
     select: {
       sireRef: "sire_ref.name",

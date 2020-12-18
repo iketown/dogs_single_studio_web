@@ -1,8 +1,24 @@
 import { states } from "./states";
-import LogoSetter from "../components/LogoSetter/LogoSetter";
-import { FaTimesCircle, FaSkullCrossbones } from "react-icons/fa";
+
 import React from "react";
 import { FaUser } from "react-icons/fa";
+
+import { isDemo } from "../../deploy_settings/isDemo";
+
+const demoOnlyRefFields = isDemo
+  ? [
+      {
+        name: "intro_text",
+        title: "Intro Text",
+        type: "blockContent",
+      },
+      {
+        name: "akc_link",
+        type: "string",
+      },
+    ]
+  : [];
+
 export const referenceFields = [
   // fields which can be referenced inside any text area
   {
@@ -14,7 +30,7 @@ export const referenceFields = [
     name: "kennel_subtitle",
     type: "string",
     title: "Kennel Subtitle",
-    description: "shelties or Collies and Shelties",
+    description: "dog breed?",
   },
   {
     name: "contact_firstName",
@@ -70,27 +86,46 @@ export const referenceFields = [
     },
   },
   { name: "location", type: "geopoint" },
-
-  {
-    name: "intro_text",
-    title: "Intro Text",
-    type: "blockContent",
-  },
-  // {
-  //   name: "ext_logo",
-  //   type: "object",
-  //   inputComponent: LogoSetter,
-  //   fields: [
-  //     { name: "url", type: "string" },
-  //     { name: "background_color", type: "string" },
-  //   ],
-  // },
-
-  {
-    name: "akc_link",
-    type: "string",
-  },
+  ...demoOnlyRefFields,
 ];
+
+const demoOnlyFields = isDemo
+  ? [
+      {
+        name: "ext_header_photos",
+        title: "External Header Photos",
+        description: "front page header photos 2 x 1",
+        type: "array",
+        of: [{ type: "external_photo" }],
+      },
+      {
+        name: "sanity_header_photos",
+        type: "array",
+        of: [{ type: "image", options: { hotspot: true } }],
+      },
+      {
+        name: "ext_photos",
+        type: "external_photo_array",
+        description: "these go on the front page and should be squares",
+      },
+      {
+        name: "kennel_domain_url",
+        type: "string",
+      },
+      {
+        name: "badges",
+        type: "array",
+        of: [{ type: "badge" }, { type: "reference", to: { type: "badge" } }],
+      },
+      {
+        name: "site_preview_img",
+        type: "image",
+        options: {
+          hotspot: true,
+        },
+      },
+    ]
+  : [];
 
 export default {
   name: "breeder",
@@ -108,30 +143,13 @@ export default {
       return {
         title,
         subtitle: `${firstName} ${lastName}`,
-        media: site_preview_img,
+        media: isDemo ? site_preview_img : null,
       };
     },
   },
   fields: [
     ...referenceFields,
-
-    {
-      name: "ext_header_photos",
-      title: "External Header Photos",
-      description: "front page header photos 2 x 1",
-      type: "array",
-      of: [{ type: "external_photo" }],
-    },
-    {
-      name: "sanity_header_photos",
-      type: "array",
-      of: [{ type: "image", options: { hotspot: true } }],
-    },
-    {
-      name: "ext_photos",
-      type: "external_photo_array",
-      description: "these go on the front page and should be squares",
-    },
+    ...demoOnlyFields,
     {
       name: "slug",
       type: "slug",
@@ -142,13 +160,9 @@ export default {
       },
     },
     {
-      name: "kennel_domain_url",
-      type: "string",
-    },
-    {
       name: "sites",
       type: "array",
-      description: "first site will be live, others for dev etc",
+      description: "first site is LIVE, others are for tests, etc",
       of: [
         {
           type: "reference",
@@ -160,19 +174,6 @@ export default {
       name: "social_links",
       type: "array",
       of: [{ type: "link" }],
-    },
-
-    {
-      name: "badges",
-      type: "array",
-      of: [{ type: "badge" }, { type: "reference", to: { type: "badge" } }],
-    },
-    {
-      name: "site_preview_img",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
     },
   ],
 };

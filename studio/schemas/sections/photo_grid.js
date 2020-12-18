@@ -13,6 +13,12 @@ export default {
   },
   fields: [
     {
+      name: "title",
+      title: "Title",
+      description: "internal only, not shown",
+      type: "string",
+    },
+    {
       name: "images",
       type: "array",
       of: [
@@ -38,24 +44,15 @@ export default {
         },
       ],
     },
-    {
-      name: "title",
-      title: "Title",
-      description: "internal only, not shown",
-      type: "string",
-    },
-    {
-      name: "description_before",
-      title: "Description Before",
-      type: "blockContent",
-    },
-    {
-      name: "description_after",
-      title: "Description After",
-      type: "blockContent",
-    },
-    { name: "section_id", title: "Section Id", type: "string" },
-    { name: "bgColor", title: "Background Color", type: "bgColor" },
-    { name: "textColor", title: "Text Color", type: "textColor" },
+    // {
+    //   name: "description_before",
+    //   title: "Description Before",
+    //   type: "blockContent",
+    // },
+    // {
+    //   name: "description_after",
+    //   title: "Description After",
+    //   type: "blockContent",
+    // },
   ],
 };

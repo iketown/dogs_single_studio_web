@@ -6,7 +6,7 @@ export default {
   type: "document",
   name: "dog",
   title: "Dog",
-  icon: () => <FaPaw color="blue" />,
+  icon: () => <FaPaw size="30px" color="blue" />,
 
   preview: {
     select: {

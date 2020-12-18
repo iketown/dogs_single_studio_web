@@ -15,13 +15,10 @@ import dog from "./dog";
 import dog_external from "./dog_external";
 import dog_list_item from "./sections/dog_list_item";
 import litter_list_item from "./sections/litter_list_item";
-import dynamic_message from "./dynamicMessage";
 import external_photo, {
   external_photo_array,
 } from "./sections/external_photo";
-import form from "./sections/contact_form/form";
 import form_question from "./sections/contact_form/form_question";
-import form_success from "./sections/contact_form/form_success";
 import form_section from "./sections/form_section";
 import full_width_image from "./full_width_image";
 import full_width_text from "./fullWidthText";
@@ -51,7 +48,7 @@ export default createSchema({
   types: schemaTypes.concat([
     badge,
     badgeArray,
-    bgColor,
+    // bgColor,
     blockContent,
     breeder_site,
     breeder,
@@ -61,7 +58,6 @@ export default createSchema({
     dog_external,
     dog,
     dog_list_item,
-    dynamic_message,
     external_photo_array,
     external_photo,
     form_question,
@@ -84,7 +80,7 @@ export default createSchema({
     sections,
     // testimonial_list,
     testimonial,
-    textColor,
+    // textColor,
     waiting_list,
     whelp,
   ]),
