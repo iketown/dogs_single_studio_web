@@ -11,6 +11,7 @@ export default {
       return { title: `${title} - centered title`, subtitle };
     },
   },
+
   fields: [
     { name: "text", type: "string", title: "Text" },
     { name: "subtitle", type: "string", title: "Subtitle" },

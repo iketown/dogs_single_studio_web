@@ -1,4 +1,4 @@
-export default {
+const photos_by_text = {
   name: "photos_by_text",
   type: "document",
   title: "Photos By Text Section",
@@ -9,6 +9,7 @@ export default {
     },
     prepare: ({ title, image }) => ({ title, media: image }),
   },
+  options: {},
   fields: [
     {
       name: "title",
@@ -33,3 +34,5 @@ export default {
     },
   ],
 };
+
+export default photos_by_text;

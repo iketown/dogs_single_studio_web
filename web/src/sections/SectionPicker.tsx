@@ -125,9 +125,7 @@ const SectionPicker: React.FC<SectionPickerI> = ({ section, index }) => {
       case "dog_list_item": {
         return <DogListItem {...{ section, index }} />;
       }
-      case "litter_list_item": {
-        return <LitterListItem {...{ section, index }} />;
-      }
+
       case "form_section": {
         return <FormSection {...{ section, index }} />;
       }

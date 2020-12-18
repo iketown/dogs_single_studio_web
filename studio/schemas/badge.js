@@ -26,7 +26,7 @@ export default {
   ],
 };
 
-export const badgeArray = {
+export const badge_array = {
   name: "badge_array",
   type: "document",
   preview: {

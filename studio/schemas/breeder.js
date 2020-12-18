@@ -129,7 +129,7 @@ const demoOnlyFields = isDemo
 
 export default {
   name: "breeder",
-  title: "About Me",
+  title: "Breeder",
   type: "document",
   icon: () => <FaUser color="blue" />,
   preview: {

@@ -1,14 +1,39 @@
+import isDemo from "../../../deploy_settings/isDemo";
+
+const demoOnlySections = {
+  // these sections are not shown to client when they have access to their own sanity studio
+  saveable: isDemo
+    ? [
+        {
+          type: "full_width_text",
+          name: "intro_text_auto",
+          title: "Auto Intro Text",
+        },
+      ]
+    : [],
+  nonSaveable: isDemo
+    ? [
+        {
+          type: "external_photo_array",
+          name: "external_photo_array",
+          title: "External Photo Array",
+        },
+        {
+          name: "centered_title_auto",
+          type: "centered_title",
+          title: "Centered Title Auto",
+        },
+        {
+          type: "photo_grid",
+          name: "photo_grid_auto",
+          title: "Photo Grid Auto replace",
+        },
+      ]
+    : [],
+};
+
 const sectionTypesNoSavedVersions = [
-  {
-    type: "external_photo_array",
-    name: "external_photo_array",
-    title: "External Photo Array",
-  },
-  {
-    name: "centered_title",
-    type: "centered_title",
-    title: "Centered Title",
-  },
+  ...demoOnlySections.nonSaveable,
   {
     name: "map_section",
     type: "map_section",
@@ -19,25 +44,16 @@ const sectionTypesNoSavedVersions = [
     type: "dog_list_item",
     title: "Dog List Item",
   },
-  // {
-  //   name: "litter_list_item",
-  //   type: "litter_list_item",
-  //   title: "Litter List Item",
-  // },
-  {
-    name: "centered_title_auto",
-    type: "centered_title",
-    title: "Centered Title Auto",
-  },
   { type: "header_section", name: "header_section_auto", title: "Header Auto" },
-  {
-    type: "photo_grid",
-    name: "photo_grid_auto",
-    title: "Photo Grid Auto replace",
-  },
 ];
 
 export const sectionTypes = [
+  ...demoOnlySections.saveable,
+  {
+    name: "centered_title",
+    type: "centered_title",
+    title: "Centered Title",
+  },
   { type: "header_section", name: "header_section", title: "Header" },
   {
     type: "photos_by_text",
@@ -59,11 +75,7 @@ export const sectionTypes = [
     name: "full_width_text",
     title: "Full Width Text",
   },
-  {
-    type: "full_width_text",
-    name: "intro_text_auto",
-    title: "Auto Intro Text",
-  },
+
   {
     type: "full_width_image",
     name: "full_width_image",
@@ -91,10 +103,11 @@ export default {
   name: "sections",
   title: "Sections",
   of: [
-    // custom
-    ...sectionTypes,
+    // custom versions
     ...sectionTypesNoSavedVersions,
-    // saved
+    ...sectionTypes,
+
+    // refs to saved versions
     ...sectionTypes.map((section) => ({
       name: `${section.name}_saved`,
       type: "reference",
