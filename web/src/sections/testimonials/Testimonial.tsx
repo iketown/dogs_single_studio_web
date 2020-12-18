@@ -1,16 +1,12 @@
 import classnames from "classnames";
+import { motion } from "framer-motion";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { motion, AnimatePresence } from "framer-motion";
+import { FaRegEnvelope } from "react-icons/fa";
+
 import PhotoSide from "./PhotoSide";
 import TextSide from "./TextSide";
-import {
-  FaPenFancy,
-  FaPenNib,
-  FaEnvelopeOpen,
-  FaRegEnvelopeOpen,
-  FaRegEnvelope,
-} from "react-icons/fa";
+
 const variants = (leftSide: boolean) => ({
   enter: { x: leftSide ? -100 : 100, opacity: 0 },
   in: { x: 0, opacity: 1, transition: { duration: 0.75 } },

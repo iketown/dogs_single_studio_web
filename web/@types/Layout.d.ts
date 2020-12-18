@@ -1,5 +1,6 @@
 interface LayoutI {
   akc_link?: string;
+  _id?: string;
   badges?: any[];
   badge_refs?: any[];
   breeder_slug?: string;
@@ -15,6 +16,8 @@ interface LayoutI {
   kennel_domain_url?: string;
   kennel_subtitle?: string;
   ext_header_photos?: ExternalPhoto[];
+  sanity_header_photos?: SanityImage[];
+  site_preview_img?: SanityImage;
   ext_header_photo?: ExternalPhoto;
   ext_photos?: {
     photos: ExternalPhoto[];
@@ -24,6 +27,7 @@ interface LayoutI {
     url?: string;
     background_color?: string;
   };
+  replacement_text?: any;
   isLive?: boolean;
   links: {
     default: { button_text: string; slug: string }[];

@@ -67,17 +67,21 @@ export const PhotoGridAuto: React.FC<SectionPickerI> = ({ section, index }) => {
     };
   });
   const breederImages =
-    breeder.ext_photos?.photos?.map(({ url, cropPxl, title, subtitle }, i) => {
-      const { height, width, x, y } = cropPxl;
-      const fullUrl = url;
-      const imgUrl = `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${url}`;
-      return {
-        fullUrl,
-        imgUrl,
-        headline: title,
-        subtitle,
-      };
-    }) || [];
+    breeder.ext_photos?.photos?.map(
+      ({ url, cropPxl, title, subtitle, display_cropped }, i) => {
+        const { height, width, x, y } = cropPxl;
+        const fullUrl = url;
+        const imgUrl = display_cropped
+          ? `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${url}`
+          : url;
+        return {
+          fullUrl,
+          imgUrl,
+          headline: title,
+          subtitle,
+        };
+      }
+    ) || [];
 
   const mixedImages = [...breederImages, ...images].slice(0, 6);
   // return <JTree data={breeder} />;

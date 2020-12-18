@@ -8,23 +8,24 @@ import JTree from "@util/JTree";
 import PageLink from "./PageLink";
 import DogLink from "./DogLink";
 import LitterLink from "./LitterLink";
+import { useDynamicText } from "../../hooks/useDynamic";
 
 const BlockRenderer = (props) => {
   const { style = "normal" } = props.node;
-
+  const children = useDynamicText(props.children);
   if (style.includes("center")) {
     const centerStyle = { textAlign: "center" };
     switch (style) {
       case "center_h2":
-        return <h2 style={centerStyle}>{props.children}</h2>;
+        return <h2 style={centerStyle}>{children}</h2>;
       case "center_h3":
-        return <h3 style={centerStyle}>{props.children}</h3>;
+        return <h3 style={centerStyle}>{children}</h3>;
       default:
-        return <div style={centerStyle}>{props.children}</div>;
+        return <div style={centerStyle}>{children}</div>;
     }
   }
   if (style === "blockquote") {
-    return <blockquote>- {props.children}</blockquote>;
+    return <blockquote>- {children}</blockquote>;
   }
 
   // Fall back to default handling

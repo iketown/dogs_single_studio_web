@@ -146,33 +146,33 @@ export default {
               },
             ],
           },
-          // {
-          //   name: "dynamicText",
-          //   type: "object",
-          //   title: "Dynamic Text",
-          //   blockEditor: {
-          //     icon: () => <FaMagic />,
-          //   },
-          //   fields: [
-          //     {
-          //       name: "key",
-          //       type: "string",
-          //       description: "what dynamic text",
-          //       options: {
-          //         list: [
-          //           ...referenceFields.map(({ name }) => name),
-          //           "homeUrl",
-          //           "slug_only",
-          //         ],
-          //       },
-          //     },
-          //     {
-          //       name: "all_caps",
-          //       type: "boolean",
-          //       description: "Display in all caps?",
-          //     },
-          //   ],
-          // },
+          {
+            name: "dynamicText",
+            type: "object",
+            title: "Dynamic Text",
+            blockEditor: {
+              icon: () => <FaMagic />,
+            },
+            fields: [
+              {
+                name: "key",
+                type: "string",
+                description: "what dynamic text",
+                options: {
+                  list: [
+                    ...referenceFields.map(({ name }) => name),
+                    "homeUrl",
+                    "slug_only",
+                  ],
+                },
+              },
+              {
+                name: "all_caps",
+                type: "boolean",
+                description: "Display in all caps?",
+              },
+            ],
+          },
           {
             name: "inline heading",
             type: "object",

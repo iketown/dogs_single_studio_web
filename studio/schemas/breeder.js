@@ -102,9 +102,14 @@ export default {
       title: "kennel_name",
       firstName: "contact_firstName",
       lastName: "contact_lastName",
+      site_preview_img: "site_preview_img",
     },
-    prepare({ title, firstName, lastName }) {
-      return { title, subtitle: `${firstName} ${lastName}` };
+    prepare({ title, firstName, lastName, site_preview_img }) {
+      return {
+        title,
+        subtitle: `${firstName} ${lastName}`,
+        media: site_preview_img,
+      };
     },
   },
   fields: [
@@ -116,6 +121,11 @@ export default {
       description: "front page header photos 2 x 1",
       type: "array",
       of: [{ type: "external_photo" }],
+    },
+    {
+      name: "sanity_header_photos",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
     },
     {
       name: "ext_photos",
@@ -156,6 +166,13 @@ export default {
       name: "badges",
       type: "array",
       of: [{ type: "badge" }, { type: "reference", to: { type: "badge" } }],
+    },
+    {
+      name: "site_preview_img",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     },
   ],
 };

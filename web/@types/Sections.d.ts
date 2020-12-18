@@ -9,6 +9,7 @@ interface Section {
   _id?: string;
   name?: string;
   location?: string;
+  replacement_text_id?: string;
   section_id?: string; // id to find on page #section-id etc.
   bgColor?: any;
   textColor?: string;
