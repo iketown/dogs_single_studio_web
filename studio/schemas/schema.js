@@ -73,8 +73,9 @@ export default createSchema({
     // DOGS
     addCategories(["dogs"])(dog),
     addCategories(["dogs"])(whelp),
+    addCategories(["dogs"])(litter),
     addCategories(["dogs"])(dog_external),
-    addCategories(["dogs"])(dog_list_item),
+    addCategories(["dogs"])(dog_list_item), // not a document type, but whatever.
 
     // COLORS & FONTS
     addCategories(["visuals"])(palette),
@@ -90,8 +91,10 @@ export default createSchema({
 
     // BUYERS
     addCategories(["buyers"])(buyer),
-    addCategories(["buyers"])(litter),
     addCategories(["buyers"])(waiting_list),
+
+    // OWNER
+    addCategories(["owner"])(breeder),
 
     external_photo_array, // demo only
     external_photo, // demo only
@@ -100,6 +103,5 @@ export default createSchema({
     imageCarousel, //object
     blockContent, //array
     sections, // array
-    breeder,
   ]),
 });

@@ -95,7 +95,12 @@ export default {
       type: "object",
       //TODO make it impossible to reserve a puppy that has already been reserved.
       fields: [
-        { name: "whelp_ref", type: "reference", to: { type: "whelp" } },
+        {
+          name: "whelp_ref",
+          title: "Puppy",
+          type: "reference",
+          to: { type: "whelp" },
+        },
         {
           name: "reservation_date",
           type: "datetime",

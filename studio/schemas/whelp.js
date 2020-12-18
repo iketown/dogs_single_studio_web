@@ -3,9 +3,9 @@ import { FaPaw } from "react-icons/fa";
 
 export default {
   name: "whelp",
-  title: "Whelp",
+  title: "Puppy",
   type: "document",
-  icon: () => <FaPaw color="brown" size="15px" />,
+  icon: () => <FaPaw color="pink" size="15px" />,
   preview: {
     select: {
       description: "description",

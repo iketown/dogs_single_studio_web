@@ -11,6 +11,12 @@ export default {
   name: "breeder_site",
   title: "Web Site",
   icon: () => <FaGlobe color="navy" />,
+  preview: {
+    select: { title: "title", subtitle: "hey hi" },
+    prepare({ title, subtitle }) {
+      return { title, subtitle };
+    },
+  },
   fields: [
     {
       name: "title",
