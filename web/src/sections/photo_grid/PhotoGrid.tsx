@@ -66,24 +66,34 @@ export const PhotoGridAuto: React.FC<SectionPickerI> = ({ section, index }) => {
       subtitle: img.subtitle,
     };
   });
-  const breederImages =
-    breeder.ext_photos?.photos?.map(
-      ({ url, cropPxl, title, subtitle, display_cropped }, i) => {
-        const { height, width, x, y } = cropPxl;
-        const fullUrl = url;
-        const imgUrl = display_cropped
-          ? `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${url}`
-          : url;
-        return {
-          fullUrl,
-          imgUrl,
-          headline: title,
-          subtitle,
-        };
-      }
-    ) || [];
 
-  const mixedImages = [...breederImages, ...images].slice(0, 6);
+  const convertExtPhoto = (
+    { url, cropPxl, title, subtitle, display_cropped },
+    i
+  ) => {
+    const { height, width, x, y } = cropPxl;
+    const fullUrl = url;
+    const escapedUrl = url.replace("?", "%3F");
+    const imgUrl = display_cropped
+      ? `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${escapedUrl}`
+      : url;
+    return {
+      fullUrl,
+      imgUrl,
+      headline: title,
+      subtitle,
+    };
+  };
+  //@ts-ignore
+  const breederImages = breeder.ext_photos?.photos?.map(convertExtPhoto) || [];
+  const newBreederImages =
+    //@ts-ignore
+    breeder.ext_square_photos?.map(convertExtPhoto) || [];
+
+  const mixedImages = [...newBreederImages, ...breederImages, ...images].slice(
+    0,
+    6
+  );
   // return <JTree data={breeder} />;
   return <PhotoGrid {...{ section, index, images: mixedImages }} />;
 };

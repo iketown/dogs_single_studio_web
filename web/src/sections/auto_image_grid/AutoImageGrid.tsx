@@ -20,7 +20,7 @@ const HoverImageDiv = styled.div`
 const AutoImageGrid: React.FC<SectionPickerI> = ({ section, index }) => {
   const [selectedPhoto, setSelectedPhoto] = useState("");
   const { breeder } = useBreederCtx();
-  const extPhotos = breeder.ext_photos?.photos || [];
+  const extPhotos = breeder.ext_photos?.photos || breeder.ext_square_photos;
 
   return (
     <div>
@@ -59,7 +59,7 @@ const AutoImageGrid: React.FC<SectionPickerI> = ({ section, index }) => {
           />
         </div>
       </Modal>
-      {/* <JTree data={breeder} /> */}
+      <JTree data={breeder} />
     </div>
   );
 };

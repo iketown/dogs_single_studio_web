@@ -16,6 +16,7 @@ interface LayoutI {
   kennel_domain_url?: string;
   kennel_subtitle?: string;
   ext_header_photos?: ExternalPhoto[];
+  ext_square_photos?: ExternalPhoto[];
   sanity_header_photos?: SanityImage[];
   site_preview_img?: SanityImage;
   ext_header_photo?: ExternalPhoto;

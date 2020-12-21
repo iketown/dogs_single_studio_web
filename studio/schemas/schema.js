@@ -57,6 +57,8 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
 
   types: schemaTypes.concat([
+    // OWNER
+    addCategories(["owner"])(breeder),
     // saveable sections:
     addCategories(["sections"])(header_section),
     addCategories(["sections"])(photos_by_text),
@@ -92,9 +94,6 @@ export default createSchema({
     // BUYERS
     addCategories(["buyers"])(buyer),
     addCategories(["buyers"])(waiting_list),
-
-    // OWNER
-    addCategories(["owner"])(breeder),
 
     external_photo_array, // demo only
     external_photo, // demo only

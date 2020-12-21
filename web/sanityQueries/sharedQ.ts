@@ -6,6 +6,7 @@ export const blockContentWithLinks = groq`
   ...,
   markDefs[]{
     ...,
+
     _type == 'page_link' => {
       ...,
       "slug": @.page-> slug.current,

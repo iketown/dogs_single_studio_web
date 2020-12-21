@@ -9,6 +9,7 @@ import PageLink from "./PageLink";
 import DogLink from "./DogLink";
 import LitterLink from "./LitterLink";
 import { useDynamicText } from "../../hooks/useDynamic";
+import { projectId } from "../../../util/sanityClient";
 
 const BlockRenderer = (props) => {
   const { style = "normal" } = props.node;
@@ -49,8 +50,12 @@ const BlockContentRenderer = ({ blocks }) => {
   };
   return (
     <div>
-      <PortableText serializers={serializers} blocks={blocks} />
-      {/* <JTree data={blocks} /> */}
+      <PortableText
+        projectId={projectId}
+        dataset="production"
+        serializers={serializers}
+        blocks={blocks}
+      />
     </div>
   );
 };

@@ -99,6 +99,13 @@ const demoOnlyFields = isDemo
         of: [{ type: "external_photo" }],
       },
       {
+        name: "ext_square_photos",
+        title: "External Square Photos",
+        description: "front page photo squares",
+        type: "array",
+        of: [{ type: "external_photo" }],
+      },
+      {
         name: "sanity_header_photos",
         type: "array",
         of: [{ type: "image", options: { hotspot: true } }],

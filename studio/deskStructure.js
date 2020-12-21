@@ -2,6 +2,7 @@ import S from "@sanity/desk-tool/structure-builder";
 import isDemo from "../deploy_settings/isDemo";
 
 import React from "react";
+
 import {
   FaUser,
   FaPaw,

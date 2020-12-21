@@ -1,3 +1,3 @@
-export const isDemo = false;
+export const isDemo = true;
 
 export default isDemo;

@@ -26,8 +26,9 @@ export const HeroHeaderAuto: React.FC<SectionPickerI> = ({ section }) => {
     ({ url, cropPxl, display_cropped }) => {
       if (!display_cropped || !cropPxl) return { show_full: true, url };
       const { height, width, x, y } = cropPxl;
+      const escapedUrl = url.replace("?", "%3F");
       const cloudUrl = display_cropped
-        ? `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${url}`
+        ? `https://res.cloudinary.com/ikeworks/image/fetch/x_${x},y_${y},w_${width},h_${height},c_crop/${escapedUrl}`
         : url;
       return { show_full: false, url: cloudUrl };
     }
