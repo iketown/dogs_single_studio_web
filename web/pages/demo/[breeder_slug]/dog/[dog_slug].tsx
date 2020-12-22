@@ -16,6 +16,7 @@ export default DogPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const dog_slug = params.dog_slug as string;
-  const data = await getSingleDogData({ dog_slug });
+  const breeder_slug = params.breeder_slug as string;
+  const data = await getSingleDogData({ dog_slug, breeder_slug });
   return { props: data };
 };

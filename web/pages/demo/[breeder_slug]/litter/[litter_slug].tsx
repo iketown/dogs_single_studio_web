@@ -9,7 +9,8 @@ const LitterPage = ({ layout_info, litter }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const litter_slug = params.litter_slug as string;
-  const data = await getLitterData({ litter_slug });
+  const breeder_slug = params.breeder_slug as string;
+  const data = await getLitterData({ litter_slug, breeder_slug });
   return { props: data };
 };
 

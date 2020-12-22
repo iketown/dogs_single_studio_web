@@ -1,7 +1,7 @@
 import { sectionInfo } from "./pageQuery";
 import sanityClient from "@util/sanityClient";
 import groq from "groq";
-import { getPageQuery } from "./sharedQ";
+import { getPageQuery, getPageQueryMulti } from "./sharedQ";
 const dogsQFragment = groq`
     "dogs": *[_type=='dog' && sex == $sex 
     ] 
@@ -47,10 +47,14 @@ const singleDogFragment = groq`
     },
 `;
 
-export const getSingleDogData = async (params: { dog_slug: string }) => {
-  const data = await sanityClient.fetch(
-    getPageQuery("", singleDogFragment),
-    params
-  );
-  return data;
+const oneDogPageQGroqSingle = getPageQuery("", singleDogFragment);
+const oneDogPageQGroqMulti = getPageQueryMulti("", singleDogFragment);
+
+export const getSingleDogData = async (params: {
+  dog_slug: string;
+  breeder_slug?: string;
+}) => {
+  if (params.breeder_slug)
+    return sanityClient.fetch(oneDogPageQGroqMulti, params);
+  return sanityClient.fetch(oneDogPageQGroqSingle, params);
 };

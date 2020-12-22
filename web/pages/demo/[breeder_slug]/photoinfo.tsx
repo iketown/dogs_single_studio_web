@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import sanityClient from "@util/sanityClient";
 import groq from "groq";
 import { useRouter } from "next/router";
+import moment from "moment";
 import JTree from "../../../util/JTree";
 import { Table } from "react-bootstrap";
 import { imageBuilder } from "../../../util/sanityImage";
@@ -15,7 +16,13 @@ const PhotoAndInfo = () => {
   const [allBreeders, setAllBreeders] = useState<LayoutI[]>();
   useEffect(() => {
     const { breeder_slug } = query;
-    sanityClient.fetch(allBreedersQ).then(setAllBreeders);
+    sanityClient.fetch(allBreedersQ).then((breeders) =>
+      setAllBreeders(
+        breeders.sort((a, b) => {
+          return moment(a._updatedAt).isAfter(b._updatedAt) ? -1 : 1;
+        })
+      )
+    );
   }, [query]);
 
   return (

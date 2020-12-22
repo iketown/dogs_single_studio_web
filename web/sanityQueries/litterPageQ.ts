@@ -1,6 +1,6 @@
 import groq from "groq";
 import sanityClient from "@util/sanityClient";
-import { getPageQuery, photosForGalleryQ } from "./sharedQ";
+import { getPageQuery, getPageQueryMulti, photosForGalleryQ } from "./sharedQ";
 import { sectionInfo } from "./pageQuery";
 const litterFrag = groq`
 "litter": *[ 
@@ -27,7 +27,12 @@ const litterFrag = groq`
 }
 `;
 
-export const getLitterData = async (params: { litter_slug: string }) => {
-  const data = await sanityClient.fetch(getPageQuery(litterFrag), params);
-  return data;
+const litterGroqSingle = getPageQuery(litterFrag);
+const litterGroqMulti = getPageQueryMulti(litterFrag);
+export const getLitterData = async (params: {
+  litter_slug: string;
+  breeder_slug?: string;
+}) => {
+  if (params.breeder_slug) return sanityClient.fetch(litterGroqMulti, params);
+  return sanityClient.fetch(litterGroqSingle, params);
 };
